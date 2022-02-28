@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.Objects;
+
 public class Point {
 
     protected final Double3 xyz;
@@ -24,11 +26,12 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point)o;
-        return Object.equals(xyz, point.xyz);
+        return xyz.equals(point.xyz);
     }
-
+/**
     @Override
     public int hashCode() {
         return Object.hash(xyz);
     }
+    */
 }
