@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Point {
 
-    protected final Double3 xyz;
+    final Double3 xyz;
     public Point(double x, double y, double z) {
         xyz = new Double3(x,y,z);
     }
@@ -22,16 +22,30 @@ public class Point {
     }
 
     @Override
-    public boolean equals(Object o){
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point)o;
+    public boolean equals(Object object){
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Point point = (Point)object;
         return xyz.equals(point.xyz);
     }
-/**
+
     @Override
-    public int hashCode() {
-        return Object.hash(xyz);
+    public String toString() {
+        return xyz.toString();
     }
-    */
+
+    public double distanceSquared(Point point){
+        final double x1=xyz.d1;
+        final double y1=xyz.d2;
+        final double z1=xyz.d3;
+        final double x2=point.xyz.d1;
+        final double y2=point.xyz.d2;
+        final double z2=point.xyz.d3;
+        return((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))*((z2-z1)*(z2-z1));
+
+    }
+
+    public double distance(Point point){
+        return Math.sqrt(distanceSquared(point));
+    }
 }
