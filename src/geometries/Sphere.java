@@ -4,9 +4,14 @@ import primitives.Point;
 import primitives.Vector;
 
 public class Sphere implements Geometry{
-    private Point center;
-    private double radius;
+    private final Point center;
+    private final double radius;
 
+    /**
+     * constructor
+     * @param center
+     * @param radius
+     */
     public Sphere(Point center, double radius) {
         this.center = center;
         this.radius = radius;
@@ -20,6 +25,10 @@ public class Sphere implements Geometry{
         return radius;
     }
 
+    /**
+     * prints the sphere type
+     * @return
+     */
     @Override
     public String toString() {
         return "center=" + center +

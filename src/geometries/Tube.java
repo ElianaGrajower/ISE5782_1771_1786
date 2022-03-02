@@ -5,9 +5,14 @@ import primitives.Ray;
 import primitives.Vector;
 
 public class Tube implements Geometry{
-    protected Ray axisRay;
-    protected double radius;
+    protected final Ray axisRay;
+    protected final double radius;
 
+    /**
+     * constructor
+     * @param axisRay
+     * @param radius
+     */
     public Tube(Ray axisRay, double radius) {
         this.axisRay = axisRay;
         this.radius = radius;
@@ -21,6 +26,10 @@ public class Tube implements Geometry{
         return radius;
     }
 
+    /**
+     * prints the tube type
+     * @return
+     */
     @Override
     public String toString() {
         return "axisRay=" + axisRay +
