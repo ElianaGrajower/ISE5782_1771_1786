@@ -77,7 +77,6 @@ public class Point {
         final double y2=point.xyz.d2;
         final double z2=point.xyz.d3;
         return((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))*((z2-z1)*(z2-z1));
-
     }
 
     /**

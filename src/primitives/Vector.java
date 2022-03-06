@@ -37,9 +37,7 @@ public class Vector extends Point {
      */
     @Override
     public Vector add(Vector vector){
-        Double3 p=  vector.xyz.add(this.xyz);
-        Vector newVector=new Vector(p);
-        return newVector;
+        return new Vector(vector.xyz.add(this.xyz));
     }
 
     /**
@@ -118,4 +116,5 @@ public class Vector extends Point {
     public String toString() {
         return super.toString();
     }
+
 }
