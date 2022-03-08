@@ -1,5 +1,6 @@
 package unittests.geometries;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,14 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for geometries.Cylinder class
  * @author Eliana Grajower & Mikhal Levy
  */
-public class PlaneTest {
 
-    @Test
-    void testGetQ0() {
-    }
+public class CylinderTest {
 
-    @Test
-    void testTestToString() {
+    @BeforeEach
+    void setUp() {
     }
 
     @Test
@@ -26,6 +24,10 @@ public class PlaneTest {
     }
 
     @Test
-    void testTestGetNormal() {
+    void testGetHeight() {
+    }
+
+    @Test
+    void testTestToString() {
     }
 }
