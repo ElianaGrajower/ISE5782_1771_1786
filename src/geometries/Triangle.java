@@ -18,4 +18,5 @@ public class Triangle extends Polygon{
         return  "vertices=" + vertices +
                 ", plane=" + plane;
     }
+
 }

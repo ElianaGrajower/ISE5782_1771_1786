@@ -1,7 +1,10 @@
 package unittests.geometries;
 
+import geometries.Cylinder;
+import geometries.Plane;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import primitives.Point;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
@@ -21,7 +24,10 @@ public class CylinderTest {
 
     @Test
     void testGetNormal() {
+
+
     }
+
 
     @Test
     void testGetHeight() {

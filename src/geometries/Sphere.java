@@ -1,7 +1,10 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 public class Sphere implements Geometry{
     private final Point center;
@@ -36,7 +39,11 @@ public class Sphere implements Geometry{
     }
 
     @Override
-    public Vector getNormal(Point point) {
-        return null;
-    }
-}
+    public  Vector getNormal(Point point) {
+
+       Vector p0 = point.subtract(center);
+            return p0.normalize();
+        }
+
+   }
+
