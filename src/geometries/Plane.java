@@ -1,10 +1,10 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
+
+import static primitives.Util.*;
 
 public class Plane implements Geometry{
     private final Point q0;
@@ -64,4 +64,37 @@ public class Plane implements Geometry{
     }
 
 
+    /**
+     * @param ray
+     * @return
+     */
+    @Override
+    public List<Point> findIntersections(Ray ray)
+    {
+        Point P0=ray.getP0();
+        Vector v=ray.getDir();
+        if(q0.equals(P0))
+        {return null;}
+        Vector n = normal;
+        //denominator
+        double nv=alignZero(n.dotProduct(v));
+        //ray is lying in the plane axis
+        if(isZero(nv)){
+            return null;}
+        Vector P0_Q0=q0.subtract(P0);
+        double nP0_Q0=alignZero(n.dotProduct(P0_Q0));
+        //numerator
+        double nP0Q0=alignZero(n.dotProduct(P0_Q0));
+        //t should>0
+        if(isZero(nP0Q0))
+        {
+            return  null;
+        }
+        double t=alignZero(nP0Q0/nv);
+        if(t<=0)
+        {
+            return null;
+        }
+        return List.of(ray.getPoint(t));
+    }
 }

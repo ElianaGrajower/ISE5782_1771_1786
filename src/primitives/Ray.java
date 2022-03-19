@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.isZero;
+
 public class Ray {
 
     private final Point p0;
@@ -44,6 +46,19 @@ public class Ray {
     @Override
     public String toString() {
         return p0.toString() + dir.toString();
+    }
+
+    /**
+     * Get point at specific distance in the ray direction
+     * @param t distance for reaching new Point
+     * @return new {@link Point}
+     */
+    public Point getPoint(double t)
+    {
+        if(isZero(t)){
+            throw new IllegalArgumentException("t equal 0 cause illegal vector ZERO");
+        }
+        return p0.add(dir.scale(t));
     }
 
 }

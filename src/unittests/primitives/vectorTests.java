@@ -7,11 +7,7 @@ import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 /**
- * Unit tests for primitives.Point class
- * @author Eliana Grajower & Mikhal Levy
- */
-/**
- * Unit tests for geometries.Cylinder class
+ * Unit tests for primitives.Vector class
  * @author Eliana Grajower & Mikhal Levy
  */
 public class vectorTests {

@@ -11,10 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for primitives.Point class
  * @author Eliana Grajower & Mikhal Levy
  */
-/**
- * Unit tests for geometries.Cylinder class
- * @author Eliana Grajower & Mikhal Levy
- */
 public class PointTests {
 
   /**
