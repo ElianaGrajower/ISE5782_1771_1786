@@ -62,18 +62,19 @@ public void testConstructor(){
     @Test
     void testDotProduct() {
         Vector v1 = new Vector(1, 2, 3);
-        Vector v2 = new Vector(0, 3, -2);
-        Vector v3 = new Vector(-2, -4, -6);
+        Vector v2 = new Vector(-2, -4, -6);
+        Vector v3 = new Vector(0, 3, -2);
+
         // ============ Equivalence Partitions Tests ==============
-        // TC01: Test if Dot-Product has the wrong value
-        if (!isZero(v1.dotProduct(v2) + 28))
-            out.println("ERROR: dotProduct() wrong value");
+        // TC01: Simple dotProduct test
+        assertEquals(-28d, v1.dotProduct(v2), 0.00001, "dotProduct() wrong value");
 
         // =============== Boundary Values Tests ==================
-        // TC11: Test Dot-Product is not zero
-        if (!isZero(v1.dotProduct(v3)))
-            out.println("ERROR: dotProduct() for orthogonal vectors is not zero");
-
+        // TC11: dotProduct for orthogonal vectors
+        assertEquals(
+                0d, v1.dotProduct(v3),
+                0.00001,
+                "dotProduct() for orthogonal vectors is not zero");
     }
 
     /**
