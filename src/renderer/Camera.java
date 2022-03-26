@@ -11,14 +11,14 @@ public class Camera {
     private double hight;
     private double width;
     private double distance;
-/**
+
     public Camera(Point location, Vector v_t0, Vector v_up) {
         this.location = location;
         this.v_t0 = v_t0;
         this.v_up = v_up;
         if(v_t0.dotProduct(v_up) != 0)
-            throw
-    }*/
+           throw new IllegalArgumentException("the 2 vectors are not verticals to each other");
+    }
 
     public Point getLocation() {
         return location;
