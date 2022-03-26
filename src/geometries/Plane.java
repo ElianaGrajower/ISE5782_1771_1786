@@ -22,7 +22,7 @@ public class Plane implements Geometry{
     public Plane(Point vertex1, Point vertex2,Point vertex3) {
         if(vertex1.equals(vertex2)||vertex2.equals(vertex3)||vertex1.equals(vertex3))
             throw new IllegalArgumentException("2 of the points are the same");
-        Vector u1=vertex2.subtract(vertex1);
+       Vector u1=vertex2.subtract(vertex1);
         Vector u2=vertex3.subtract(vertex1);
         if(u1.normalize().dotProduct(u2.normalize())==1)
             throw new IllegalArgumentException("the points are on the same line");

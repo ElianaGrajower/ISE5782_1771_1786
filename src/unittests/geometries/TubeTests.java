@@ -16,17 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class TubeTests {
 
-    @Test
-    void testGetAxisRay() {
-    }
 
-    @Test
-    void testGetRadius() {
-    }
-
-    @Test
-    void testTestToString() {
-    }
 
     /**
      * Test method for {@link geometries.Tube#getNormal(primitives.Point)}.
