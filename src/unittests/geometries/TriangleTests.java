@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class TriangleTests {
 
-
     /**
      * Test method for {@link geometries.Polygon#getNormal(primitives.Point)}.
      */
