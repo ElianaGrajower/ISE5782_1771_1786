@@ -66,9 +66,7 @@ public class PlaneTests {
     }
 
 
-    @Test
-    void testTestGetNormal() {
-    }
+
 
     /**
      *tests for {@link geometries.Plane#findIntersections(Ray)}.

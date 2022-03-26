@@ -8,7 +8,7 @@ public class Camera {
     private Vector v_t0;
     private Vector v_up;
     private Vector v_right;
-    private double hight;
+    private double height;
     private double width;
     private double distance;
 
@@ -36,8 +36,8 @@ public class Camera {
         return v_right;
     }
 
-    public double getHight() {
-        return hight;
+    public double getHeight() {
+        return height;
     }
 
     public double getWidth() {
