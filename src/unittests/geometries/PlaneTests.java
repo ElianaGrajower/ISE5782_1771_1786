@@ -46,13 +46,6 @@ public class PlaneTests {
 
 
 
-    @Test
-    void testGetQ0() {
-    }
-
-    @Test
-    void testTestToString() {
-    }
     /**
      *tests for {@link geometries.Plane#getNormal(primitives.Point)}.
      */
