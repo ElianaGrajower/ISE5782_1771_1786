@@ -11,24 +11,16 @@ import static primitives.Util.isZero;
  * @author Eliana Grajower & Mikhal Levy
  */
 public class vectorTests {
+
     @Test
-public void testConstructor(){
+    public void testConstructor(){
         // =============== Boundary Values Tests ==================
         // TC10: test zero vector
-        try {
-            new Vector(0, 0, 0);
-            out.println("ERROR: zero vector does not throw an exception");
-        } catch (Exception e) {
-        }
+        assertThrows(IllegalArgumentException.class,
+                () -> new Vector(0, 0, 0),
+                "ERROR: zero vector does not throw an exception");
     }
 
-    @Test
-    void testTestEquals() {
-    }
-
-    @Test
-    void testAdd() {
-    }
     /**
      * Test method for {@link primitives.Vector#lengthSquared()}.
      */
@@ -36,9 +28,9 @@ public void testConstructor(){
     void testLengthSquared() {
         // ============ Equivalence Partitions Tests ==============
         // TC01:test length..
-       Vector v1 = new Vector(1, 2, 3);
-        if (!isZero(v1.lengthSquared() - 14))
-            out.println("ERROR: lengthSquared() wrong value");
+        Vector v1 = new Vector(1, 2, 3);
+        assertTrue (isZero(v1.lengthSquared() - 14),
+                "ERROR: lengthSquared() wrong value");
 
     }
     /**
@@ -48,12 +40,8 @@ public void testConstructor(){
     void testLength() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: test length
-        if (!isZero(new Vector(0, 3, 4).length() - 5))
-            out.println("ERROR: length() wrong value");
-    }
-
-    @Test
-    void testScale() {
+        assertTrue (isZero(new Vector(0, 3, 4).length() - 5),
+                "ERROR: length() wrong value");
     }
 
      /**
@@ -113,23 +101,14 @@ public void testConstructor(){
         Vector u = v.normalize();
 
         // TC01: Test that the vector has been normalized
-        if (!isZero(u.length() - 1))
-            out.println("ERROR: the normalized vector is not a unit vector");
+        assertTrue (isZero(u.length() - 1),
+                "ERROR: the normalized vector is not a unit vector");
         // TC02:test that the vectors are co-lined
-        try {
-            v.crossProduct(u);
-            out.println("ERROR: the normalized vector is not parallel to the original one");
-        } catch (Exception e) {
-        }
+        assertThrows(IllegalArgumentException.class,
+            ()-> v.crossProduct(u),
+                "ERROR: the normalized vector is not parallel to the original one");
         // TC03: Test that the vector has been normalized
-        if (v.dotProduct(u) < 0)
-            out.println("ERROR: the normalized vector is opposite to the original one");
-    }
-
-
-
-
-    @Test
-    void testTestToString() {
+        assertFalse (v.dotProduct(u) < 0,
+                "ERROR: the normalized vector is opposite to the original one");
     }
 }

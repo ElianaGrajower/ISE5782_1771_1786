@@ -14,18 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class SphereTests {
 
-    @Test
-    void testGetCenter() {
-    }
-
-    @Test
-    void testGetRadius() {
-    }
-
-    @Test
-    void testTestToString() {
-    }
-
     /**
      * Test method for {@link geometries.Sphere#getNormal(primitives.Point)}.
      */

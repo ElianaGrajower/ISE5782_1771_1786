@@ -22,11 +22,10 @@ public class PointTests {
       Point p1 = new Point(1, 2, 3);
 
       // TC01: Test operations with points and vectors
-      if (!(p1.add(new Vector(-1, -2, -3)).equals(new Point(0, 0, 0))))
-        out.println("ERROR: Point + Vector does not work correctly");
+      assertEquals(p1.add(new Vector(-1, -2, -3)),new Point(0, 0, 0),
+              "ERROR: Point + Vector does not work correctly");
+
     }
-
-
 
     /**
      * Test method for {@link primitives.Point#subtract(primitives.Point)}.
@@ -37,23 +36,8 @@ public class PointTests {
       Point p1 = new Point(1, 2, 3);
 
       // TC01: Test operations with points and vectors
-      if (!new Vector(1, 1, 1).equals(new Point(2, 3, 4).subtract(p1)))
-        out.println("ERROR: Point - Point does not work correctly");
+      assertEquals(new Vector(1, 1, 1),(new Point(2, 3, 4).subtract(p1)),
+              "ERROR: Point - Point does not work correctly");
     }
 
-    @Test
-    void testTestEquals() {
-    }
-
-    @Test
-    void testTestToString() {
-    }
-
-    @Test
-    void testDistanceSquared() {
-    }
-
-    @Test
-    void testDistance() {
-    }
 }

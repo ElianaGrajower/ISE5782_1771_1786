@@ -25,11 +25,9 @@ public class PolygonTests {
 		// ============ Equivalence Partitions Tests ==============
 
 		// TC01: Correct concave quadrangular with vertices in correct order
-		try {
-			new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1));
-		} catch (IllegalArgumentException e) {
-			fail("Failed constructing a correct polygon");
-		}
+		assertThrows(IllegalArgumentException.class, //
+				() -> new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1)),//
+				("Failed constructing a correct polygon"));
 
 		// TC02: Wrong vertices order
 		assertThrows(IllegalArgumentException.class, //

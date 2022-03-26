@@ -9,21 +9,4 @@ import org.junit.jupiter.api.Test;
 
 public class CylinderTests {
 
-    @Test
-    void testGetNormal() {
-    }
-
-
-    @Test
-    void testGetHeight() {
-    }
-
-    @Test
-    void testTestToString() {
-    }
-
-
-    @Test
-    void testFindIntersections() {
-    }
 }
