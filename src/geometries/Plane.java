@@ -11,7 +11,6 @@ public class Plane implements Geometry{
     private final Vector normal;
 
 
-
     /**
      * constructor for plane
      * calculates normal according to equation

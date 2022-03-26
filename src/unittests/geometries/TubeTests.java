@@ -16,8 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class TubeTests {
 
-
-
     /**
      * Test method for {@link geometries.Tube#getNormal(primitives.Point)}.
      */
