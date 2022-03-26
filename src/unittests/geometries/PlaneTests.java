@@ -60,14 +60,9 @@ public class PlaneTests {
         assertEquals(1, pl.getNormal(null).length(),"the normal is not equal to 1");
 
         // TC02: checks if the normal is well calculated
-                double sqrt3 = Math.sqrt(1d / 3);
+        double sqrt3 = Math.sqrt(1d / 3);
         assertEquals(new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point(0, 0, 1)), "Bad normal to plane");
 
-    }
-
-
-    @Test
-    void testTestGetNormal() {
     }
 
     /**

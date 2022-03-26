@@ -8,10 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GeometriesTests {
 
-    @Test
-    void testAdd() {
-    }
-
     /**
      * Unit tests for geometries.Geometries class
      * @author Eliana Grajower & Mikhal Levy
