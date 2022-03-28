@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Point {
 
     final Double3 xyz;
+    public final static Point ZERO=new Point(0d,0d,0d);
 
     /**
      * constructor
@@ -76,7 +77,7 @@ public class Point {
         final double x2=point.xyz.d1;
         final double y2=point.xyz.d2;
         final double z2=point.xyz.d3;
-        return((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))*((z2-z1)*(z2-z1));
+       return((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))*((z2-z1)*(z2-z1));
     }
 
     /**
@@ -102,5 +103,12 @@ public class Point {
      */
     public double getY() {
         return xyz.d2;
+    }
+    /**
+     * get for z
+     * @return double for z
+     */
+    public double getZ() {
+        return xyz.d3;
     }
 }

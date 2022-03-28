@@ -2,12 +2,14 @@ package renderer;
 
 import primitives.*;
 
+import static primitives.Util.isZero;
+
 /**
  * a class of a camera
  * @author Mikhal Levy & Eliana Grajower
  */
 public class Camera {
-    private Point location;
+    private Point P0;
     private Vector v_t0;
     private Vector v_up;
     private Vector v_right;
@@ -17,25 +19,25 @@ public class Camera {
 
     /**
      * constructor
-     * @param location {@link Point} a point on the camera
+     * @param P0 {@link Point} a point on the camera
      * @param v_t0 {@link Vector} a vector the goes from the camera straight to the view plane.
      * @param v_up a vector that goes from the camera upwards
      */
-    public Camera(Point location, Vector v_t0, Vector v_up) {
-        this.location = location;
+    public Camera(Point P0, Vector v_t0, Vector v_up) {
+        this.P0 = P0;
         this.v_t0 = v_t0.normalize();
         this.v_up = v_up.normalize();
-        v_right = v_t0.crossProduct(v_up).normalize();
+        this.v_right = this.v_t0.crossProduct(this.v_up).normalize();
         if (v_t0.dotProduct(v_up) != 0)
            throw new IllegalArgumentException("the 2 vectors are not verticals to each other");
     }
 
     /**
      * getter
-     * @return a location
+     * @return a P0
      */
-    public Point getLocation() {
-        return location;
+    public Point getP0() {
+        return P0;
     }
 
     /**
@@ -116,7 +118,27 @@ public class Camera {
      * @param i index of pixels
      * @return a constructed ray through the pixels
      */
-    public Ray constructRay(int nX, int nY, int j, int i){
-        return null;
-    }
+    public Ray constructRay(int nX, int nY, int j, int i) {
+        Point Pc = P0.add(v_t0.scale(distance));
+        //ratio
+        Double Ry = height / nY;
+        Double Rx = width / nX;
+        Double Yi = -(i - (nY - 1) / 2) * Ry;
+        Double Xj = (j - (nX - 1) / 2) * Rx;
+        //Pixel[i,j] center:
+        Point Pij = Pc;
+        if (isZero(Xj) && isZero(Yi)) {
+            return new Ray(P0, Pij.subtract(P0));
+        }
+        if (isZero(Xj)) {
+            Pij = Pij.add(v_up.scale(Yi));
+            return new Ray(P0, Pij.subtract(P0));
+        }
+        if (isZero(Yi)) {
+            Pij = Pij.add(v_right.scale(Xj));
+            return new Ray(P0, Pij.subtract(P0));
+        }
+        Pij = Pc.add(v_right.scale(Xj).add(v_up.scale(Yi)));
+        return new Ray(P0, Pij.subtract(P0));
+     }
 }
