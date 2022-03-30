@@ -19,8 +19,8 @@ public class Camera {
 
     /**
      * constructor
-     * @param P0 {@link Point} a point on the camera
-     * @param v_t0 {@link Vector} a vector the goes from the camera straight to the view plane.
+     * @param P0 a point on the camera
+     * @param v_t0 a vector the goes from the camera straight to the view plane.
      * @param v_up a vector that goes from the camera upwards
      */
     public Camera(Point P0, Vector v_t0, Vector v_up) {

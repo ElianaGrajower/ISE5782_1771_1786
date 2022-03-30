@@ -1,4 +1,4 @@
-package unittests;
+package unittests.renderer;
 
 import geometries.Intersectable;
 import geometries.Plane;
@@ -21,8 +21,8 @@ public class IntegrationTests {
      * Test helper function to count the intersections and compare with expected value
      *
      * @author Eliana Grajower & Mikhal Levy
-     * @param cam      camera for the test
-     * @param geo      3D body to test the integration of the camera with
+     * @param cam camera for the test
+     * @param geo 3D body to test the integration of the camera with
      * @param expected amount of intersections
      */
     private void assertCountIntersections(Camera cam, Intersectable geo, int expected) {
