@@ -3,9 +3,7 @@ package unittests.geometries;
 import geometries.Tube;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
