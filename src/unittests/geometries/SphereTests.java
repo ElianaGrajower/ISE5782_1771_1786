@@ -23,9 +23,11 @@ public class SphereTests {
 
         // TC01: checks if the normal is well calculated
         Sphere sph = new Sphere(new Point(0, 0, 1), 1.0);
-        assertEquals(new Vector(0, 0, 1), sph.getNormal(new Point(0, 0, 2)), "Bad normal to sphere");
+        assertEquals(new Vector(0, 0, 1), sph.getNormal(new Point(0, 0, 2)),
+                "Bad normal to sphere");
         // TC02: checks if the normal length is equal to 1
-        assertEquals(1, sph.getNormal(new Point(2,0,1)).length(), "the normal is not equal to 1");
+        assertEquals(1, sph.getNormal(new Point(2,0,1)).length(),
+                "the normal is not equal to 1");
 
     }
 

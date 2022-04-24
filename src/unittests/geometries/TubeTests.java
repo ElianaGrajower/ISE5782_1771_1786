@@ -61,7 +61,8 @@ public class TubeTests {
         if (result.get(0).getY() > result.get(1).getY()) {
             result = List.of(result.get(1), result.get(0));
         }
-        assertEquals(List.of(new Point(0.4, 0.2, 0.2), new Point(2, 1, 1)), result, "Bad intersections");
+        assertEquals(List.of(new Point(0.4, 0.2, 0.2), new Point(2, 1, 1)), result,
+                "Bad intersections");
 
         // TC03: Ray's starts within tube and crosses the tube (1 point)
         ray = new Ray(new Point(1, 0.5, 0.5), new Vector(2, 1, 1));
@@ -117,7 +118,8 @@ public class TubeTests {
         if (result.get(0).getY() > result.get(1).getY()) {
             result = List.of(result.get(1), result.get(0));
         }
-        assertEquals(List.of(new Point(0.4, 0.2, 2), new Point(2, 1, 2)), result, "Bad intersections");
+        assertEquals(List.of(new Point(0.4, 0.2, 2), new Point(2, 1, 2)), result,
+                "Bad intersections");
         // TC26: Ray starts at the surface and goes inside (1 point)
         ray = new Ray(new Point(0.4, 0.2, 2), new Vector(2, 1, 0));
         result = tube2.findIntersections(ray);
@@ -146,7 +148,8 @@ public class TubeTests {
         if (result.get(0).getY() > result.get(1).getY()) {
             result = List.of(result.get(1), result.get(0));
         }
-        assertEquals(List.of(new Point(1, 0, 2), new Point(1, 2, 2)), result, "Bad intersections");
+        assertEquals(List.of(new Point(1, 0, 2), new Point(1, 2, 2)), result,
+                "Bad intersections");
         // TC31: Ray starts at the surface and goes inside and crosses the axis
         ray = new Ray(new Point(1, 0, 2), new Vector(0, 1, 0));
         result = tube2.findIntersections(ray);
@@ -196,7 +199,8 @@ public class TubeTests {
         if (result.get(0).getY() > result.get(1).getY()) {
             result = List.of(result.get(1), result.get(0));
         }
-        assertEquals(List.of(new Point(0.4, 0.2, 1), new Point(2, 1, 1)), result, "Bad intersections");
+        assertEquals(List.of(new Point(0.4, 0.2, 1), new Point(2, 1, 1)), result,
+                "Bad intersections");
         // TC46: Ray starts at the surface and goes inside
         ray = new Ray(new Point(0.4, 0.2, 1), new Vector(2, 1, 0));
         result = tube2.findIntersections(ray);
@@ -225,7 +229,8 @@ public class TubeTests {
         if (result.get(0).getY() > result.get(1).getY()) {
             result = List.of(result.get(1), result.get(0));
         }
-        assertEquals(List.of(new Point(1, 0, 1), new Point(1, 2, 1)), result, "Bad intersections");
+        assertEquals(List.of(new Point(1, 0, 1), new Point(1, 2, 1)), result,
+                "Bad intersections");
         // TC51: Ray starts at the surface and goes inside and goes through the axis
         // head
         ray = new Ray(new Point(1, 0, 1), new Vector(0, 1, 0));
@@ -270,7 +275,8 @@ public class TubeTests {
         if (result.get(0).getY() > result.get(1).getY()) {
             result = List.of(result.get(1), result.get(0));
         }
-        assertEquals(List.of(new Point(2, 1, 2), new Point(0.4, 1.8, 1.2)), result, "Bad intersections");
+        assertEquals(List.of(new Point(2, 1, 2), new Point(0.4, 1.8, 1.2)), result,
+                "Bad intersections");
         // TC63: Ray's line crosses the tube and begins at surface and goes inside
         ray = new Ray(new Point(0.4, 1.8, 1), new Vector(2, -1, 1));
         result = tube2.findIntersections(ray);

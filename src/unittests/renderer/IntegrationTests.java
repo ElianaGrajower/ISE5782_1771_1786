@@ -52,7 +52,8 @@ public class IntegrationTests {
                 .setVPSize(3,3)
                 .setVPDistance(1);;
 
-        Camera cam2 = new Camera(new Point(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, -1, 0))
+        Camera cam2 = new Camera(new Point(0, 0, 0.5), new Vector(0, 0, -1),
+                new Vector(0, -1, 0))
                 .setVPSize(3,3)
                 .setVPDistance(1);
 
@@ -83,16 +84,20 @@ public class IntegrationTests {
                 .setVPDistance(1);
 
         // TC01: Plane against camera 9 points
-        assertCountIntersections(cam, new Plane(new Point(0, 0, -5), new Vector(0, 0, 1)), 9, 3, 3);
+        assertCountIntersections(cam, new Plane(new Point(0, 0, -5), new Vector(0, 0, 1)),
+                9, 3, 3);
 
         // TC02: Plane with small angle 9 points
-        assertCountIntersections(cam, new Plane(new Point(0, 0, -5), new Vector(0, 1, 2)), 9, 3, 3);
+        assertCountIntersections(cam, new Plane(new Point(0, 0, -5), new Vector(0, 1, 2)),
+                9, 3, 3);
 
         // TC03: Plane parallel to lower rays 6 points
-        assertCountIntersections(cam, new Plane(new Point(0, 0, -5), new Vector(0, 1, 1)), 6, 3, 3);
+        assertCountIntersections(cam, new Plane(new Point(0, 0, -5), new Vector(0, 1, 1)),
+                6, 3, 3);
 
         // TC04: Beyond Plane 0 points
-        assertCountIntersections(cam, new Plane(new Point(0, 0, -5), new Vector(0, 1, 1)), 6, 3, 3);
+        assertCountIntersections(cam, new Plane(new Point(0, 0, -5), new Vector(0, 1, 1)),
+                6, 3, 3);
     }
 
     /**
@@ -105,10 +110,12 @@ public class IntegrationTests {
                 .setVPDistance(1);;
 
         // TC01: Small triangle 1 point
-        assertCountIntersections(cam, new Triangle(new Point(1, 1, -2), new Point(-1, 1, -2), new Point(0, -1, -2)), 1, 3, 3);
+        assertCountIntersections(cam, new Triangle(new Point(1, 1, -2), new Point(-1, 1, -2),
+                new Point(0, -1, -2)), 1, 3, 3);
 
         // TC02: Medium triangle 2 points
-        assertCountIntersections(cam, new Triangle(new Point(1, 1, -2), new Point(-1, 1, -2), new Point(0, -20, -2)), 2, 3, 3);
+        assertCountIntersections(cam, new Triangle(new Point(1, 1, -2), new Point(-1, 1, -2),
+                new Point(0, -20, -2)), 2, 3, 3);
     }
 
 }
