@@ -23,7 +23,7 @@ public class Vector extends Point {
     /**
      * checks if objects are equal to each other
      * @param object
-     * @return true or false
+     * @return true or false.
      */
     @Override
     public boolean equals(Object object) {
