@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.List;
+
 import static primitives.Util.isZero;
 
 public class Ray {
@@ -61,5 +63,26 @@ public class Ray {
         return p0.add(dir.scale(t));
     }
 
+    /**
+     * return the closest point to the ray head
+     * @param pointList
+     * @return
+     */
+   public Point findClosestPoint(List<Point> pointList) {
+      Point result= null;
+       double minDistance = Double.MAX_VALUE;
+       double ptDistance;
+
+       for (Point geoPoint : pointList ) {
+           ptDistance = geoPoint.distanceSquared(p0);
+           if( ptDistance < minDistance){
+               minDistance = ptDistance;
+               result =geoPoint;
+           }
+       }
+
+       return result;
+
+   }
 }
 

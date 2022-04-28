@@ -40,4 +40,13 @@ public class PointTests {
               "ERROR: Point - Point does not work correctly");
     }
 
+
+  /**
+   * testing the {@link Point#distance(Point)
+   */
+  @Test
+  void testDistance() {
+    Point point3 = new Point(0.5, 0, -100);
+    assertEquals(0.5,  point3.distance(new Point(0, 0, -100)),  0.0001, "distance method doesn't work correctly");
+  }
 }
