@@ -2,6 +2,8 @@ package renderer;
 
 import primitives.*;
 
+import java.util.MissingResourceException;
+
 import static primitives.Util.isZero;
 
 /**
@@ -16,6 +18,9 @@ public class Camera {
     private double height;
     private double width;
     private double distance;
+    private ImageWriter imageWriter;
+    private RayTracerBase rayTracer;
+
 
     /**
      * constructor
@@ -141,4 +146,54 @@ public class Camera {
         Pij = Pc.add(v_right.scale(Xj).add(v_up.scale(Yi)));
         return new Ray(P0, Pij.subtract(P0));
     }
+
+    public Camera setImageWriter(ImageWriter imageWriter) {
+        this.imageWriter = imageWriter;
+        return this;
+    }
+
+    public Camera setRayTracer(RayTracerBasic rayTracer) {
+        this.imageWriter = imageWriter;
+        return this;
+    }
+
+    public void renderImage() {
+        try {
+            if (imageWriter == null) {
+                throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
+            }
+            if (rayTracer == null) {
+                throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
+            }
+        }
+        catch (MissingResourceException e) {
+            throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
+        }
+        int nx = imageWriter.getNx();
+        int ny = imageWriter.getNy();
+        for (int i = 0; i < nx; i++) {
+            for (int j = 0; j < ny  ; j++) {
+                Color pixelColor = castRay(nx, ny, i, j);
+                imageWriter.writePixel(i, j, pixelColor);
+            }
+        }
+    }
+
+    private Color castRay(int nx, int ny, int i, int j) {
+        Ray ray = constructRay(nx, ny, i, j);
+        return rayTracer.traceRay(ray);
+    }
+
+    public void writeToImage() {
+        imageWriter.writeToImage();
+    }
+
+    public void printGrid(int interval, Color color) {
+        if (imageWriter == null)
+            throw new MissingResourceException("missing image writer", "Camera", "in print grid");
+
+        }
+    }
+
+
 }
