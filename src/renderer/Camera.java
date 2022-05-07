@@ -184,15 +184,19 @@ public class Camera {
         return rayTracer.traceRay(ray);
     }
 
-    public void writeToImage() {
-        imageWriter.writeToImage();
-    }
-
     public void printGrid(int interval, Color color) {
         if (imageWriter == null)
             throw new MissingResourceException("missing image writer", "Camera", "in print grid");
+        for (int j = 0; j< imageWriter.getNx(); j++)
+            for (int i = 0; i< imageWriter.getNy(); i++)
+                if(i%interval==0 || j%interval==0)
+                    imageWriter.writePixel(j, i, color);
+    }
 
-        }
+    public void writeToImage() {
+        if(imageWriter == null)
+            throw new MissingResourceException("missing image writer", "Camera", "in writeTorImage");
+        imageWriter.writeToImage();
     }
 
 
