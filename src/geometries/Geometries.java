@@ -9,7 +9,7 @@ import java.util.*;
  * @author Mikhal Levy & Eliana Grajower
  */
 public class Geometries implements Intersectable{
-    private List<Intersectable> intersectables;
+    private List<Intersectable> intersectables=new List<>();
 
     /**
      * constructor
@@ -32,6 +32,7 @@ public class Geometries implements Intersectable{
      * @param geometries
      */
     public void add(Intersectable... geometries) {
+
         Collections.addAll(intersectables, geometries);
     }
 

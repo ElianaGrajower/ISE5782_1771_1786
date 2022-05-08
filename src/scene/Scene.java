@@ -21,8 +21,16 @@ public class Scene {
         geometries = builder.geometries;
     }
 
+    public Color getBackground() {
+        return background;
+    }
 
-                                /**build class for builder method*/
+    public AmbientLight getAmbienLight() {
+        return ambientLight;
+    }
+
+
+    /**build class for builder method*/
     public static class SceneBuilder {
 
         private final String name;

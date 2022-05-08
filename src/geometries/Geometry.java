@@ -9,6 +9,14 @@ import java.util.List;
  * @author Mikhal Levy & Eliana Grajower
  */
 public interface Geometry extends Intersectable{
+     Color emission =Color.BLACK;
+
+
+
+    public static Color getEmission()
+    {
+        return emission;
+    }
     /**
      * @param point
      * @return the normal to the vector in a specific point
