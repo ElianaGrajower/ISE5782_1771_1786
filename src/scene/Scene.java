@@ -29,6 +29,12 @@ public class Scene {
         return ambientLight;
     }
 
+    /** was i supposed to add this??*/
+    public Scene setAmbientLight(AmbientLight ambientLight) {
+        this.ambientLight = ambientLight;
+        return this;
+    }
+
 
     /**build class for builder method*/
     public static class SceneBuilder {

@@ -6,7 +6,7 @@ import java.util.List;
 
 import static primitives.Util.alignZero;
 
-public class Sphere implements Geometry{
+public class Sphere extends Geometry{
     private final Point center;
     private final double radius;
 

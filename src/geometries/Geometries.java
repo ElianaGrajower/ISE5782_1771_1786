@@ -3,13 +3,15 @@ package geometries;
 import primitives.*;
 
 import java.util.*;
+import java.util.List;
+
 
 /**
  * class for geometries
  * @author Mikhal Levy & Eliana Grajower
  */
-public class Geometries implements Intersectable{
-    private List<Intersectable> intersectables=new List<>();
+public class Geometries extends Intersectable{
+    private List<Intersectable> intersectables=new LinkedList<>();
 
     /**
      * constructor

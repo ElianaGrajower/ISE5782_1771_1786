@@ -153,30 +153,31 @@ public class Camera {
     }
 
     public Camera setRayTracer(RayTracerBasic rayTracer) {
-        this.imageWriter = imageWriter;
+        this.rayTracer = rayTracer;
         return this;
     }
 
     public void renderImage() {
         try {
             if (imageWriter == null) {
-                throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
+                throw new MissingResourceException("missing resource ", ImageWriter.class.getName(), "");
             }
             if (rayTracer == null) {
-                throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
+                throw new MissingResourceException("missing resource ", RayTracerBase.class.getName(), "");
+            }
+            int nx = imageWriter.getNx();
+            int ny = imageWriter.getNy();
+            for (int i = 0; i < nx; i++) {
+                for (int j = 0; j < ny  ; j++) {
+                    Color pixelColor = castRay(nx, ny, i, j);
+                    imageWriter.writePixel(i, j, pixelColor);
+                }
             }
         }
         catch (MissingResourceException e) {
-            throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
+            throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
         }
-        int nx = imageWriter.getNx();
-        int ny = imageWriter.getNy();
-        for (int i = 0; i < nx; i++) {
-            for (int j = 0; j < ny  ; j++) {
-                Color pixelColor = castRay(nx, ny, i, j);
-                imageWriter.writePixel(i, j, pixelColor);
-            }
-        }
+
     }
 
     private Color castRay(int nx, int ny, int i, int j) {
