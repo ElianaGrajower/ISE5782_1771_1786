@@ -152,5 +152,10 @@ public class Tube extends Geometry{
 
 //        return null;
     }
+
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+        return null;
+    }
 }
 

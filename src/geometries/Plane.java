@@ -96,4 +96,9 @@ public class Plane extends Geometry{
         }
         return List.of(ray.getPoint(t));
     }
+
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+        return null;
+    }
 }

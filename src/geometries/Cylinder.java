@@ -140,4 +140,9 @@ public class Cylinder extends Tube{
             return List.of(p2);
         return null;
     }
+
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+        return null;
+    }
 }

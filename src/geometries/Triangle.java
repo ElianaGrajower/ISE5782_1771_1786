@@ -31,4 +31,9 @@ public class Triangle extends Polygon{
         return super.findIntersections(ray);
     }
 
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+        return null;
+    }
+
 }

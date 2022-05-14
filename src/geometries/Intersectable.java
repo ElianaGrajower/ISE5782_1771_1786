@@ -53,8 +53,17 @@ public abstract class Intersectable {
          */
         @Override
         public String toString() {
-            return super.toString() + " " + geometry;
+            return  "geometry=" + geometry +
+                    ", point=" + point;
         }
+    }
+
+    public List<GeoPoint> findGeoIntersections(Ray ray){
+        return findGeoIntersectionsHelper(ray);
+    }
+
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+        return null;
     }
 
 }

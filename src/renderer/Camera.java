@@ -177,7 +177,6 @@ public class Camera {
         catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
         }
-
     }
 
     private Color castRay(int nx, int ny, int i, int j) {
@@ -190,7 +189,7 @@ public class Camera {
             throw new MissingResourceException("missing image writer", "Camera", "in print grid");
         for (int j = 0; j< imageWriter.getNx(); j++)
             for (int i = 0; i< imageWriter.getNy(); i++)
-                if(i%interval==0 || j%interval==0)
+                if(j%interval==0 || i%interval==0)
                     imageWriter.writePixel(j, i, color);
     }
 

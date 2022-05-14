@@ -47,6 +47,7 @@ public class PointTests {
   @Test
   void testDistance() {
     Point point3 = new Point(0.5, 0, -100);
-    assertEquals(0.5,  point3.distance(new Point(0, 0, -100)),  0.0001, "distance method doesn't work correctly");
+    assertEquals(0.5,  point3.distance(new Point(0, 0, -100)),  0.0001,
+            "distance method doesn't work correctly");
   }
 }

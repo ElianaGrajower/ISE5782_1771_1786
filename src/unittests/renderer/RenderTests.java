@@ -30,18 +30,20 @@ public class RenderTests {
 				.build();
 
 		scene.geometries.add(new Sphere(new Point(0, 0, -100),50),
-				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
+				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100),
+						new Point(-100, 100, -100)), // up
 				// left
-				new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100), new Point(-100, -100, -100)), // down
+				new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100),
+						new Point(-100, -100, -100)), // down
 				// left
-				new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))); // down
+				new Triangle(new Point(100, 0, -100), new Point(0, -100, -100),
+						new Point(100, -100, -100))); // down
 		// right
 		Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 				.setVPDistance(100) //
 				.setVPSize(500, 500) //
 				.setImageWriter(new ImageWriter("base render test", 1000, 1000))
 				.setRayTracer(new RayTracerBasic(scene));
-
 		camera.renderImage();
 		camera.printGrid(100, new Color(java.awt.Color.YELLOW));
 		camera.writeToImage();
@@ -55,20 +57,20 @@ public class RenderTests {
 	 */
 	@Test
 	public void basicRenderMultiColorTest() {
-		Scene scene = new Scene.SceneBuilder("Test scene").build()//
-				.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.2))); //
+		Scene scene = new Scene.SceneBuilder("Test scene")//
+				.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.2))).build(); //
 
 		scene.geometries.add( //
 				new Sphere(new Point(0, 0, -100), 50),
 				// up left
-				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100))
-						.setEmission(new Color(GREEN)),
+				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100),
+						new Point(-100, 100, -100)).setEmission(new Color(GREEN)),
 				// down left
-				new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100), new Point(-100, -100, -100))
-						.setEmission(new Color(RED)),
+				new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100),
+						new Point(-100, -100, -100)).setEmission(new Color(RED)),
 				// down right
-				new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))
-						.setEmission(new Color(BLUE)));
+				new Triangle(new Point(100, 0, -100), new Point(0, -100, -100),
+						new Point(100, -100, -100)).setEmission(new Color(BLUE)));
 
 		Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 				.setVPDistance(100) //

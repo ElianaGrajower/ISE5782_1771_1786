@@ -31,17 +31,25 @@ class RayTest {
 
         //TC10:Test an empty list of points
         pointList.clear();
-        pointList=null;
+        pointList = null;
         assertEquals(null,ray.findClosestPoint(pointList),
                 "ERROR: Point - the list is empty");
         //TC11:Test if the nearest point is the first in the list
-        pointList.add(point2);pointList.add(point1);pointList.add(point3);
-        assertEquals(point2,ray.findClosestPoint(pointList),
+        List<Point> pointList1= new LinkedList<>();
+        pointList1.add(point2);
+        pointList1.add(point1);
+        pointList1.add(point3);
+        assertEquals(point2,ray.findClosestPoint(pointList1),
                 "ERROR: Point - the nearest point is the first point");
         //TC12
-        pointList.clear();
-        pointList.add(point1);pointList.add(point3);pointList.add(point2);
-        assertEquals(point3,ray.findClosestPoint(pointList),
+        pointList1.clear();
+        List<Point> pointList2 = new LinkedList<>();
+        pointList2.add(point1);
+        pointList2.add(point3);
+        pointList2.add(point2);
+        assertEquals(point2,ray.findClosestPoint(pointList2),
                 "ERROR: Point - the nearest point is the last point");
+
+        /** check this!!!!!!!!!!!!!!!!!!!! might be wrong i changed it!!!!!!!!!!!!!!!*/
     }
 }

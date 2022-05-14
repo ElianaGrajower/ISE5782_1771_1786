@@ -11,7 +11,7 @@ import java.util.List;
  * @author Mikhal Levy & Eliana Grajower
  */
 public class Geometries extends Intersectable{
-    private List<Intersectable> intersectables=new LinkedList<>();
+    private List<Intersectable> intersectables = new LinkedList<>();
 
     /**
      * constructor
@@ -60,6 +60,13 @@ public class Geometries extends Intersectable{
         }
         return result;
     }
+
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+        return null;
+    }
+
+
 }
 
 
