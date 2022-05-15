@@ -144,6 +144,7 @@ public class Camera {
             return new Ray(P0, Pij.subtract(P0));
         }
         Pij = Pc.add(v_right.scale(Xj).add(v_up.scale(Yi)));
+
         return new Ray(P0, Pij.subtract(P0));
     }
 

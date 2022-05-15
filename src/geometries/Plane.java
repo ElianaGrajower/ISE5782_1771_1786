@@ -98,7 +98,51 @@ public class Plane extends Geometry{
     }
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
-        return null;
+
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
+    {
+        List<Point> points = null;
+
+        Point P0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        Vector n = normal;
+
+        if(this.q0.equals(P0))
+        {
+            return  null;
+        }
+
+        Vector P0_Q0 = this.q0.subtract(P0);
+
+        //numerator
+        double nP0Q0  = alignZero(n.dotProduct(P0_Q0));
+
+        //
+        if (isZero(nP0Q0 )){
+            return null;
+        }
+
+        //denominator
+        double nv = alignZero(n.dotProduct(v));
+
+        // ray is lying in the plane axis
+        if(isZero(nv)){
+            return null;
+        }
+
+        double  t = alignZero(nP0Q0  / nv);
+
+        if (t <=0){
+            return  null;
+        }
+
+        Point point = ray.getPoint(t);
+
+        points= List.of(point);
+
+
+        if (points == null) return null;
+        return points.stream().map(p -> new GeoPoint(this, p)).toList();
     }
 }
