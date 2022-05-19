@@ -46,7 +46,7 @@ public class Vector extends Point {
      */
     public double lengthSquared(){
         Double3 productPoint= this.xyz.product(this.xyz);
-       return productPoint.d1+productPoint.d2+productPoint.d3 ;
+        return productPoint.d1+productPoint.d2+productPoint.d3 ;
     }
     /**
      * calculates the length of a vector

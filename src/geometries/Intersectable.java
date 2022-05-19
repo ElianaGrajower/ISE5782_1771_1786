@@ -10,11 +10,12 @@ import java.util.List;
  * @author Mikhal Levy & Eliana Grajower
  */
 public abstract class Intersectable {
+
     /**
      * @param ray {@link Ray} pointing towards the object
      * @return List of intersection {@link Point}s
      */
-   /** public List<Point> findIntersections(Ray ray) {
+    /** public List<Point> findIntersections(Ray ray) {
         return null;
     }*/
 
@@ -58,34 +59,26 @@ public abstract class Intersectable {
          */
         @Override
         public String toString() {
-            return "geometry=" + geometry +
-                    ", point=" + point;
+            return  "GeoPoint{" +
+                    "geometry=" + geometry +
+                    ", point=" + point +
+                    '}';
         }
     }
-/**
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
 
-        return findGeoIntersectionsHelper(ray);
+    public List<Point> findIntersections(Ray ray) {
+        var geoList = findGeoIntersections(ray);
+        return geoList == null ? null
+                : geoList.stream().map(gp -> gp.point).toList();
     }
-
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        return null;
-    }
-**/
-
-public List<Point> findIntersections(Ray ray)
-{
-    var geoList = findGeoIntersections(ray);
-    return geoList == null ? null
-            : geoList.stream().map(gp -> gp.point).toList();
-
-}
-    abstract protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 
     public List<GeoPoint> findGeoIntersections(Ray ray)
     {
-        return this.findGeoIntersectionsHelper(ray);
+        return findGeoIntersectionsHelper(ray);
     }
+
+    abstract protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 }
+
 
 

@@ -45,7 +45,8 @@ public class Cylinder extends Tube{
      * @param ray
      * @return
      */
-    @Override
+
+    /**@Override
     public List<Point> findIntersections(Ray ray) {
 //        //todo rethink the all thing
 //        List<Point3D> result = super.findIntersections(ray);
@@ -118,7 +119,7 @@ public class Cylinder extends Tube{
         else if (p1OnAxis < 0)
             p1 = base1.findIntersections(ray).get(0);
         else
-            /* p2OnAxis < 0 */ p2 = base1.findIntersections(ray).get(0);
+            /* p2OnAxis < 0 */ /**p2 = base1.findIntersections(ray).get(0);
 
         // get projection of the points on the axis vs. base2 and update the
         // points if both above base2 or they are from different sides of base2
@@ -129,7 +130,7 @@ public class Cylinder extends Tube{
         else if (p1OnAxisMinusH > 0)
             p1 = base2.findIntersections(ray).get(0);
         else
-            /* p2OnAxisMinusH > 0 */ p2 = base2.findIntersections(ray).get(0);
+            /* p2OnAxisMinusH > 0 *//** p2 = base2.findIntersections(ray).get(0);
 
         // Check the points and return list of points accordingly
         if (p1 != null && p2 != null)
@@ -139,7 +140,7 @@ public class Cylinder extends Tube{
         if (p2 != null)
             return List.of(p2);
         return null;
-    }
+    }*/
 
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){

@@ -66,7 +66,7 @@ public class Plane extends Geometry{
     /**
      * @param ray
      * @return
-     */
+     *//**
     @Override
     public List<Point> findIntersections(Ray ray)
     {
@@ -95,7 +95,7 @@ public class Plane extends Geometry{
             return null;
         }
         return List.of(ray.getPoint(t));
-    }
+    }*/
 
     @Override
 

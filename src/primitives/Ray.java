@@ -65,28 +65,16 @@ public class Ray {
 
     /**
      * return the closest point to the ray head
-     * @param pointList
+     * @param points
      * @return
      */
-   public Point findClosestPoint(List<Point> pointList) {
-       /**Point result= null;
-       double minDistance = Double.MAX_VALUE;
-       double ptDistance;
-       if(pointList == null)
-           return null;
-       for (Point geoPoint : pointList ) {
-           ptDistance = geoPoint.distanceSquared(p0);
-           if( ptDistance < minDistance){
-               minDistance = ptDistance;
-               result =geoPoint;
-           }
-       }
-       return result;*/
-       return pointList == null || pointList.isEmpty() ? null
-               : findClosestGeoPoint(pointList.stream().map(p -> new GeoPoint(null, p)).toList()).point;
-   }
+    public Point findClosestPoint(List<Point> points) {
+        return points == null || points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+    }
 
-   public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointList){
+
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointList){
        GeoPoint result= null;
        double minDistance = Double.MAX_VALUE;
        double ptDistance;

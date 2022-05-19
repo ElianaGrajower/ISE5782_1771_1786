@@ -10,12 +10,21 @@ import java.util.List;
  */
 public abstract class Geometry extends Intersectable{
     protected Color emission = Color.BLACK;
+    private Material material = new Material();
     /**
      * a get function
      * @return emission
      */
     public Color getEmission() {
         return emission;
+    }
+
+    /**
+     * getter for material
+     * @return
+     */
+    public Material getMaterial() {
+        return material;
     }
 
     /**
@@ -33,5 +42,13 @@ public abstract class Geometry extends Intersectable{
      */
     public abstract Vector getNormal(Point point);    //is this supposed to be public????
 
-
+    /**
+     * a material setter that returns a geometry
+     * @param material
+     * @return
+     */
+    public Geometry setMaterial(Material material) {
+        this.material = material;
+        return this;
+    }
 }
