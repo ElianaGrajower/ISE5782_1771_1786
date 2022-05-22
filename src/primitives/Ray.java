@@ -2,11 +2,14 @@ package primitives;
 
 import java.util.List;
 
+
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 import geometries.Intersectable.GeoPoint;
 
 public class Ray {
 
+    private static final double DELTA = 0.1;
     private final Point p0;
     private final Vector dir;
 
@@ -19,7 +22,16 @@ public class Ray {
         this.p0 = p0;
         this.dir = dir.normalize(); //normalize the vector
     }
+    public Ray(Point point, Vector direction, Vector normal)
+    {
+        //point + normal.scale(±EPSILON)
+        dir = direction.normalize();
 
+        double nv = alignZero(normal.dotProduct(dir));
+
+        Vector normalDelta = normal.scale((nv > 0 ? DELTA : -DELTA));
+        p0 = point.add(normalDelta);
+    }
     public Point getP0() {
         return p0;
     }

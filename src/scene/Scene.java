@@ -72,6 +72,18 @@ public class Scene {
         return this;
     }
 
+    public List<LightSource> getLights() {
+        return  lights;
+    }
+
+    public Color getBackground() {
+        return background;
+    }
+
+    public AmbientLight getAmbienLight() {
+        return  ambientLight;
+    }
+
     /**build class for builder method*/
     public static class SceneBuilder {
 
