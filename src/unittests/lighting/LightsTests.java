@@ -134,6 +134,8 @@ public class LightsTests {
 				.writeToImage(); //
 	}
 
+	//bonus???
+
 	/**
 	 * Produce a picture of a sphere lighted by a narrow spot light
 	 */

@@ -71,13 +71,10 @@ public class Point {
      * @return the distance squared of the points
      */
     public double distanceSquared(Point point){
-        final double x1=xyz.d1;
-        final double y1=xyz.d2;
-        final double z1=xyz.d3;
-        final double x2=point.xyz.d1;
-        final double y2=point.xyz.d2;
-        final double z2=point.xyz.d3;
-       return((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))*((z2-z1)*(z2-z1));
+        double x=this.xyz.subtract(point.xyz).d1 * this.xyz.subtract(point.xyz).d1;
+        double y=this.xyz.subtract(point.xyz).d2 * this.xyz.subtract(point.xyz).d2;
+        double z=this.xyz.subtract(point.xyz).d3 * this.xyz.subtract(point.xyz).d3;
+        return x+y+z;
     }
 
     /**

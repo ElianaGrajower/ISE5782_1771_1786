@@ -6,6 +6,10 @@ import java.util.List;
 
 import static primitives.Util.*;
 
+/**
+ *
+ * @author Mikhal Levi & Eliana Grajower
+ */
 public class Plane extends Geometry{
     private final Point q0;
     private final Vector normal;
@@ -97,8 +101,12 @@ public class Plane extends Geometry{
         return List.of(ray.getPoint(t));
     }*/
 
+    /**
+     * a function that helps the findGeoIntersections function
+     * @param ray
+     * @return a list of geo points
+     */
     @Override
-
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
     {
         List<Point> points = null;

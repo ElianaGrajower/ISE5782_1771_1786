@@ -26,15 +26,14 @@ public class RayTracerBasic extends RayTracerBase{
     public RayTracerBasic(Scene scene) {
         super(scene);
     }
-
-    private Color calcColor(GeoPoint closestPoint, Ray ray)
+    private Color calcColor(GeoPoint geoPoint, Ray ray)
     {
-        return scene.ambientLight.getIntensity();
+        return scene.ambientLight.getIntensity().add(calcLocalEffects(geoPoint, ray));
     }
     private Color calcColor(GeoPoint geoPoint,Ray ray,Double3 k)
     {
               return scene.ambientLight.getIntensity().add(geoPoint.geometry.getEmission())
-                .add(calcLocalEffects(geoPoint, ray,k));
+                .add(calcLocalEffects(geoPoint, ray));
     }
 
     /**
@@ -43,8 +42,8 @@ public class RayTracerBasic extends RayTracerBase{
      * @param ray
      * @param k
      * @return
-     */
-   private Color calcLocalEffects(GeoPoint gp, Ray ray, Double3 k) {
+     *//**
+    private Color calcLocalEffects1(GeoPoint gp, Ray ray, Double3 k) {
         Color color = gp.geometry.getEmission();
         Vector v = ray.getDir();
         Vector n = gp.geometry.getNormal(gp.point);
@@ -72,7 +71,7 @@ public class RayTracerBasic extends RayTracerBase{
             }
         }
         return color;
-    }
+    }*/
 
     /**
      *
@@ -80,9 +79,10 @@ public class RayTracerBasic extends RayTracerBase{
      * @param nl
      * @return
      */
-   private Double3 calcDiffusive(Material material, double nl) {
+/**
+    private Double3 calcDiffusive(Material material, Double3 nl) {
         return material.kD.scale(Math.abs(nl));
-    }
+    }*/
 
     /**
      *
@@ -92,14 +92,14 @@ public class RayTracerBasic extends RayTracerBase{
      * @param nl
      * @param v
      * @return
-     */
+     *//**
     private Double3 calcSpecular(Material material, Vector n, Vector l, double nl, Vector v) {
         Vector r = l.subtract(n.scale(l.dotProduct(n) * 2)).normalize();
         double minusVR = 0 - alignZero(r.dotProduct(v));
         if (minusVR <= 0)
             return Double3.ZERO;
         return material.kS.scale(Math.pow(Math.max(0, r.dotProduct(v.scale(-1d))), material.getnShininess()));
-    }
+    }*/
 
     /**
      *
@@ -156,6 +156,40 @@ public class RayTracerBasic extends RayTracerBase{
         }
         GeoPoint closestPoint = ray.findClosestGeoPoint(intersection);
         return calcColor(closestPoint,ray);
+    }
+
+    private Color calcLocalEffects(GeoPoint intersection, Ray ray) {
+        Color color = intersection.geometry.getEmission();
+        Vector v = ray.getDir ();
+        Vector n = intersection.geometry.getNormal(intersection.point);
+        double nv = alignZero(n.dotProduct(v));
+        if (nv == 0)
+            return color;
+        Material material = intersection.geometry.getMaterial();
+        for (LightSource lightSource : scene.lights) {
+            Vector l = lightSource.getL(intersection.point);
+            double nl = alignZero(n.dotProduct(l));
+            if (nl * nv > 0) { // sign(nl) == sing(nv)
+                Color lightIntensity = lightSource.getIntensity(intersection.point);
+                color = color.add(
+                        lightIntensity.scale(calcDiffusive(material, nl)),
+                        lightIntensity.scale(calcSpecular(material, n, l, nl, v)));
+            }
+        }
+        return color;
+    }
+
+    private Double3 calcSpecular(Material material, Vector n, Vector l, double nl, Vector v) {
+        Vector r = l.subtract(n.scale(l.dotProduct(n)*2)); //nl must not be zero
+        double minusVR = -alignZero(r.dotProduct(v));
+        if (minusVR <= 0)
+            return Double3.ZERO; //view from direction opposite to r vector
+        return material.kS.scale(Math.pow(minusVR, material.getnShininess()));
+    }
+
+    private Double3 calcDiffusive(Material material, double nl) {
+        nl = Math.abs(nl);
+        return  material.kD.scale(nl);
     }
 }
 

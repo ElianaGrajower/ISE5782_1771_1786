@@ -10,13 +10,17 @@ public class SpotLight extends PointLight{
 
     /**
      * constructor
-     *
      * @param intensity
      */
     public SpotLight(Color intensity, Point position, Vector direction) {
         super(intensity, position);
-        this.direction = direction;
+        this.direction = direction.normalize();
+    }
 
+    public Color getIntensity(Point point)
+    {
+        double max= Math.max(0,direction.dotProduct(getL(point)));
+        return super.getIntensity(point).scale(max);
     }
 
     public SpotLight setNarrowBeam(double narrowBeam) {
