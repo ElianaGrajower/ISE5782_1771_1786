@@ -1,6 +1,7 @@
 package scene;
 
 import geometries.Geometries;
+import geometries.Intersectable;
 import lighting.AmbientLight;
 import lighting.LightSource;
 import primitives.Color;
@@ -82,6 +83,10 @@ public class Scene {
 
     public AmbientLight getAmbienLight() {
         return  ambientLight;
+    }
+
+    public Geometries getGeometries() {
+        return geometries;
     }
 
     /**build class for builder method*/

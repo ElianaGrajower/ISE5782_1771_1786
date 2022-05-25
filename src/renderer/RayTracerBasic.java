@@ -11,6 +11,7 @@ import java.util.List;
 
 import static primitives.Util.alignZero;
 
+
 /**
  * @author Mikhal Levy & Eliana Grajower
  */
@@ -19,6 +20,11 @@ public class RayTracerBasic extends RayTracerBase{
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
     private static final Double3 INITIAL_K =new Double3(1);
+    /**
+     * size of mooving the rays head for shadow rays
+     */
+    private static final double DELTA = 0.1;
+    private static final double EPS = 0.1;//help value
     /**
      * constructor
      * @param scene
@@ -121,6 +127,31 @@ public class RayTracerBasic extends RayTracerBase{
         nl = Math.abs(nl);
         return  material.kD.scale(nl);
     }
+
+    /**
+     * verification of unshaded between a point and a light source
+     * @param gp
+     * @param lightSource
+     * @param l
+     * @param n
+     * @param nv
+     * @return
+     */
+
+        private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n, double nv) {
+
+            Vector lightDirection = l.scale(-1); // from point to light source
+            double nl = n.dotProduct(lightDirection);
+
+            Vector delta = n.scale(nl > 0 ? EPS : -EPS);
+            Point pointRay = gp.point.add(delta);
+            Ray lightRay = new Ray(pointRay, lightDirection);
+
+            //`double maxDistance = lightSource.getDistance(gp.point);
+            List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(lightRay);
+
+            return intersections == null;
+        }
 }
 
 
