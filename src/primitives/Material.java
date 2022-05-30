@@ -66,4 +66,12 @@ public class Material {
     public int getnShininess() {
         return nShininess;
     }
+
+    public Double3 getKr() {
+        return kR;
+    }
+
+    public Double3 getKt() {
+        return kT;
+    }
 }

@@ -89,6 +89,10 @@ public class Scene {
         return geometries;
     }
 
+    public AmbientLight getAmbientLight() {
+        return ambientLight;
+    }
+
     /**build class for builder method*/
     public static class SceneBuilder {
 
