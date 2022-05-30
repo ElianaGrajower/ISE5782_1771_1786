@@ -61,7 +61,7 @@ public class RayTracerBasic extends RayTracerBase{
         {
             double dist = geoPoint.point.distance(gp.point);
             return (dist >= maxDistance);
-        })
+        });
 
 //        for (var geo : intersections) {
 //            double dist = geo.point.distance(gp.point);
@@ -117,7 +117,7 @@ public class RayTracerBasic extends RayTracerBase{
                 Color lightIntensity = lightSource.getIntensity(intersection.point);
                 color = color.add(
 
-                        .scale(calcDiffusive(material, nl)),
+                        lightIntensity.scale(calcDiffusive(material, nl)),  /////i made up that its light intensity!!!
                         lightIntensity.scale(calcSpecular(material, n, l, nl, v)));
             }
         }
