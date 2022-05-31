@@ -22,7 +22,14 @@ public class Ray {
         this.p0 = p0;
         this.dir = dir.normalize(); //normalize the vector
     }
-    public Ray(Point point, Vector direction, Vector normal)
+
+    /**
+     * constructor for ray a little moved
+     * @param point
+     * @param direction
+     * @param normal
+     */
+    public Ray(Point point, Vector normal, Vector direction)
     {
         //point + normal.scale(±EPSILON)
         dir = direction.normalize();

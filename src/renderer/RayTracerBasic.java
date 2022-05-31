@@ -1,5 +1,6 @@
 package renderer;
 
+import geometries.FlatGeometry;
 import geometries.Geometries;
 import geometries.Geometry;
 import lighting.LightSource;
@@ -20,7 +21,7 @@ public class RayTracerBasic extends RayTracerBase{
 
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
-    private static final Double3 INITIAL_K =Double3.ONE;
+    private static final Double3 INITIAL_K = Double3.ONE;
     /**
      * size of mooving the rays head for shadow rays
      */
@@ -61,18 +62,17 @@ public class RayTracerBasic extends RayTracerBase{
         return 1 == level ? color : color.add(calcGlobalEffects(geoPoint, material,n,v,nv, level, k));
     }
 
-
-        private Color calcGlobalEffects(GeoPoint gp,Material material,Vector n, Vector v, double nv, int level, Double3 k) {
-            Color color = Color.BLACK;
-            Double3 kkr = material.getKr().product(k);
-            if (!kkr.lowerThan(MIN_CALC_COLOR_K))
-                color = color.add(calcGlobalEffect(constructReflectedRay(gp.point, v, n), level, material.getKr(), kkr));
-            Double3 kkt = material.getKt().product(k);
-            if (!kkt.lowerThan(MIN_CALC_COLOR_K))
-                color = color.add(
-                        calcGlobalEffect(constructRefractedRay(gp.point, v, n), level, material.getKt(), kkt));
-            return color;
-        }
+    private Color calcGlobalEffects(GeoPoint gp,Material material,Vector n, Vector v, double nv, int level, Double3 k) {
+        Color color = Color.BLACK;
+        Double3 kkr = material.getKr().product(k);
+        if (!kkr.lowerThan(MIN_CALC_COLOR_K))
+            color = color.add(calcGlobalEffect(constructReflectedRay(gp.point, v, n), level, material.getKr(), kkr));
+        Double3 kkt = material.getKt().product(k);
+        if (!kkt.lowerThan(MIN_CALC_COLOR_K))
+            color = color.add(
+                    calcGlobalEffect(constructRefractedRay(gp.point, v, n), level, material.getKt(), kkt));
+        return color;
+    }
 
     private Color calcGlobalEffect(Ray ray, int level, Double3 kx, Double3 kkx) {
         GeoPoint gp = findClosestIntersection(ray);
@@ -181,11 +181,12 @@ public class RayTracerBasic extends RayTracerBase{
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sign(nv)
-
-                Color lightIntensity = lightSource.getIntensity(intersection.point);
-                color = color.add(
-                        lightIntensity.scale(calcDiffusive(material, nl)),
-                        lightIntensity.scale(calcSpecular(material, n, l, nl, v)));
+                if(unshaded(intersection, lightSource, l, n, nl, nv)){
+                    Color lightIntensity = lightSource.getIntensity(intersection.point);
+                    color = color.add(
+                            lightIntensity.scale(calcDiffusive(material, nl)),
+                            lightIntensity.scale(calcSpecular(material, n, l, nl, v)));
+                }
             }
         }
         return color;
@@ -200,30 +201,41 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     private Double3 calcDiffusive(Material material, double nl) {
-        nl = Math.abs(nl);
-        return  material.kD.scale(nl);
+        double abs_nl = Math.abs(nl);
+        return  material.kD.scale(abs_nl);
     }
 
-    /**
-     * verification of unshaded between a point and a light source
-     * @param gp
-     * @param lightSource
-     * @param l
-     * @param n
-     * @param nv
-     * @return
-     */
-private boolean unshaded(GeoPoint gp,LightSource lightSource,Vector l, Vector n,double nl,double nv)
-{
-    Point point=gp.point;
-    Vector lightDirection=l.scale(-1);//from point to light source
-    Vector epsVector=n.scale(nv<0?EPS:-EPS);
-    Point pointRay=point.add(epsVector);
-    Ray lightRay=new Ray(pointRay,lightDirection);
-     double maxDistance=lightSource.getDistance(point);
-     List<GeoPoint> intersections=scene.getGeometries().findGeoIntersections(lightRay);
-     return  intersections==null;
-}
+//    /**
+//     * verification of unshaded between a point and a light source
+//     * @param gp
+//     * @param lightSource
+//     * @param l
+//     * @param n
+//     * @param nv
+//     * @return
+//     */
+//    private boolean unshaded(GeoPoint gp,LightSource lightSource,Vector l, Vector n,double nl,double nv)
+//    {
+//        Point point=gp.point;
+//        Vector lightDirection=l.scale(-1);//from point to light source
+//        Vector epsVector=n.scale(nv<0?EPS:-EPS);
+//        Point pointRay=point.add(epsVector);
+//        Ray lightRay=new Ray(pointRay,lightDirection);
+//        double maxDistance=lightSource.getDistance(point);
+//        List<GeoPoint> intersections=scene.getGeometries().findGeoIntersections(lightRay);
+//        return  intersections==null;
+//    }
+    private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n,double nl, double nv)
+    {
+        Point point=gp.point;
+        Vector lightDirection = l.scale(-1);//from point to light source
+        Vector epsVector = n.scale(nv < 0 ? EPS : -EPS);
+        Point pointRay = point.add(epsVector);
+        Ray lightRay=new Ray(pointRay,lightDirection);
+        double maxDistance = lightSource.getDistance(point);
+        List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(lightRay, maxDistance);
+        return intersections == null;
+    }
 }
 
 

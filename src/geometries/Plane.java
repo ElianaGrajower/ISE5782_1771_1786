@@ -10,7 +10,7 @@ import static primitives.Util.*;
  *
  * @author Mikhal Levi & Eliana Grajower
  */
-public class Plane extends Geometry{
+public class Plane extends Geometry implements FlatGeometry{
     private final Point q0;
     private final Vector normal;
 
@@ -107,7 +107,7 @@ public class Plane extends Geometry{
      * @return a list of geo points
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance)
     {
         List<Point> points = null;
 
@@ -141,13 +141,13 @@ public class Plane extends Geometry{
 
         double  t = alignZero(nP0Q0  / nv);
 
-        if (t <=0){
-            return  null;
+        if (t < 0 || alignZero(t - maxDistance) > 0){
+            return null;
         }
 
         Point point = ray.getPoint(t);
 
-        points= List.of(point);
+        points = List.of(point);
 
 
         if (points == null) return null;

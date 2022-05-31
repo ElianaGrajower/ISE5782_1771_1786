@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Triangle extends Polygon{
+public class Triangle extends Polygon implements FlatGeometry{
     /**
      * constructor
      * @param point1
@@ -36,7 +36,7 @@ public class Triangle extends Polygon{
    }*/
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance)
     {
         List<GeoPoint> result = plane.findGeoIntersections(ray);
         if(result == null) {return null;}

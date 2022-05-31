@@ -153,8 +153,9 @@ public class Tube extends Geometry{
 //        return null;
     }*/
 
-    @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+
+    @Override ////////fix whatever is related to the unshaded bonus!!!!!!!!!!!
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance){
         Vector vAxis = axisRay.getDir();
         Vector v = ray.getDir();
         Point p0 = ray.getP0();
