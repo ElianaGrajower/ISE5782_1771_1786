@@ -10,7 +10,7 @@ import static primitives.Util.*;
  *
  * @author Mikhal Levi & Eliana Grajower
  */
-public class Plane extends Geometry implements FlatGeometry{
+public class Plane extends FlatGeometry{
     private final Point q0;
     private final Vector normal;
 

@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Triangle extends Polygon implements FlatGeometry{
+public class Triangle extends Polygon{
     /**
      * constructor
      * @param point1
