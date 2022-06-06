@@ -84,4 +84,15 @@ public class Material {
         this.kR = new Double3(i);
         return this;
     }
+
+    public Double3 getKs() {
+        return kS;
+    }
+
+    public Double3 getKd() {
+        return kD;
+    }
+    public int getShininess() {
+        return nShininess;
+    }
 }
