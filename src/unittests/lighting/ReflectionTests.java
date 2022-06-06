@@ -20,7 +20,7 @@ import scene.Scene;
  * 
  * @author dzilb
  */
-public class ReflectionRefractionTests {
+public class ReflectionTests {
 	private Scene scene = new Scene.SceneBuilder("Test scene").build();
 
 	/**

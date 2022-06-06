@@ -77,10 +77,13 @@ public class Vector extends Point {
      * @return the calculation
      */
     public double dotProduct(Vector vector){
-        double x1= xyz.product(vector.xyz).d1;
-        double x2= xyz.product(vector.xyz).d2;
-        double x3= xyz.product(vector.xyz).d3;
-        return x1+x2+x3;
+        return this.xyz.d1 * vector.xyz.d1 +
+                this.xyz.d2 * vector.xyz.d2 +
+                this.xyz.d3 * vector.xyz.d3;
+//        double x1= xyz.product(vector.xyz).d1;
+//        double x2= xyz.product(vector.xyz).d2;
+//        double x3= xyz.product(vector.xyz).d3;
+//        return x1+x2+x3;
     }
 
     /**

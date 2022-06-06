@@ -145,10 +145,10 @@ public class RayTracerBasic extends RayTracerBase{
     }
     // private Color calcColor(GeoPoint geoPoint, Ray ray)
     //{
-      //  Color result =  scene.ambientLight.getIntensity();
-       // result = result.add(calcLocalEffects(geoPoint, ray));
-       /// return  result;
-   // }
+    //  Color result =  scene.ambientLight.getIntensity();
+    // result = result.add(calcLocalEffects(geoPoint, ray));
+    /// return  result;
+    // }
     private GeoPoint findClosestIntersection(Ray ray) {
         List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(ray);
         if (intersections == null) {
@@ -338,6 +338,3 @@ public class RayTracerBasic extends RayTracerBase{
         return true;
     }
 }
-
-
-
