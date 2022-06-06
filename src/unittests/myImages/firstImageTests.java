@@ -16,13 +16,15 @@ public class firstImageTests {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
                 .setVPSize(150, 150).setVPDistance(1000);
 
-        scene.geometries.add( //
+        scene.geometries.add(
+                new Tube(new Ray(new Point(0,0,0),new Vector(1,3,5)),5 ).
+                        setEmission(new Color(RED.getRed(), WHITE.getRed(), WHITE.getTransparency())).setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
                 new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),
-                        new Point(-1500, -1500, -2000)).setEmission(new Color(BLUE)) //
+                        new Point(-1500, -1500, -2000)).setEmission(new Color(PINK)) //
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
-        new Triangle(new Point(15, -15, -15), new Point(-15, 15, -15),
-                new Point(-15, -15, -20)).setEmission(new Color(white)) //
-                .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
+        new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),
+                        new Point(1500, 1500, -2000)).setEmission(new Color(TRANSLUCENT, BLUE.getBlue(), WHITE.getBlue()))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
                  new Sphere(new Point(0,0,50),25d).setEmission(new Color(RED)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100))
         , new Sphere(new Point(30,-50,40),15d).setEmission(new Color(GREEN)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100)),
                 new Sphere(new Point(0,-40,150),7d).setEmission(new Color(black)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100)));
