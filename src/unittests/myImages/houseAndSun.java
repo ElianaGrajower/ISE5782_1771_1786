@@ -43,12 +43,15 @@ private Scene scene = new Scene.SceneBuilder("Test scene").setAmbientLight(new A
                             new Point(37.5, 25.5, 0)).
                             setEmission(new Color(138,87,12)),
                     new Triangle(new Point(-37.5, 22.5, 0),new Point(39, 22.5, 0),new Point(0,75,4)).setEmission(new Color(221,34,9)).setMaterial(new Material().setnShininess(50))
-                            ,new Sphere(new Point(34,62,40),13).setEmission(new Color(247,170,17)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100)));
+                            ,new Sphere(new Point(34,62,40),13).setEmission(new Color(247,170,17)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100))
+            ,new Tube(new Ray(new Point(0,0,0),new Vector(1,3,5)),7 )
+            .setEmission(new Color(227, 29, 162)).setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3))
+                    );
 
 
 
             scene.lights.add( //
-                    new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2)) //
+                    new SpotLight(new Color(WHITE),new Point(40, 40, 115), new Vector(-1, -1, -4)) //
                             .setkL(0.0004).setkQ(0.0000006));
 
             ImageWriter imageWriter = new ImageWriter("house", 1000, 1000);

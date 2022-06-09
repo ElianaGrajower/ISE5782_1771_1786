@@ -84,7 +84,7 @@ public class imagePart7 {
 
                 //grass
                 new Triangle(M,Kg,L).setEmission(grass)
-                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
+                       .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
                 new Triangle(Kg,Jg,M).setEmission(grass)
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
 
@@ -95,18 +95,19 @@ public class imagePart7 {
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
 
                 //sun
-                new Sphere(new Point(6.59,8.44,0),2).setEmission(new Color(YELLOW))
-                        .setMaterial(new Material().setKD(0.2).setkS(0.2).setnShininess(30).setKt(0.6))
-
+                new Sphere(new Point(7.59,9.44,30),2).setEmission(new Color(YELLOW))
+                        .setMaterial(new Material().setKD(0.001).setkS(0.5).setnShininess(100).setKt(0.6).setKr(0.7))
+                        // setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100))
 
                 );
-        scene.lights.add(new SpotLight(new Color(YELLOW/*800,500,200*/), new Point(6.59,8.44, 25),
-                new Vector(-7.46,-11.58,0)));
+//        scene.lights.add(new SpotLight(new Color(YELLOW/*800,500,200*/), new Point(6.59,8.44, 25),
+//                new Vector(-7.46,-11.58,0)));
+        scene.lights.add(new PointLight(new Color(yellow),new Point(6.59,8.44,15)));
 
-//        scene.lights.add(new DirectionalLight(new Color(800,500,0), new Vector(5.59,7.44,10)));
-               // .setkL(4E-4).setkQ(2E-5));
-//        new SpotLight(new Color(800, 500, 0), new Point(6.59,8.44,0),
-//                new Vector(-9.95,-11.61,0)));//.setkL(0.0004).setkQ(0.0000006));
+        scene.lights.add(new DirectionalLight(new Color(800,500,0), new Vector(5.59,7.44,10)));
+
+       //scene.lights.add(new SpotLight(new Color(800, 500, 0), new Point(6.59,8.44,0),
+            //    new Vector(-9.95,-11.61,0)));//.setkL(0.0004).setkQ(0.0000006));
 
 
         camera.setImageWriter(new ImageWriter("House image", 500, 500)) //
