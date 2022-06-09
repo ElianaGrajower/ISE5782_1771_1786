@@ -61,7 +61,8 @@ public class ReflectionTests {
 						.setMaterial(new Material().setKD(0.25).setkS(0.25).setnShininess(20).setKt(0.5)),
 				new Sphere(new Point(-950, -900, -1000), 200d).setEmission(new Color(100, 20, 20)) //
 						.setMaterial(new Material().setKD(0.25).setkS(0.25).setnShininess(20)),
-				new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500), new Point(670, 670, 3000)) //
+				new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),
+						new Point(670, 670, 3000)) //
 						.setEmission(new Color(20, 20, 20)) //
 						.setMaterial(new Material().setKr(1)),
 				new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),
