@@ -17,16 +17,16 @@ public class firstImageTests {
                 .setVPSize(150, 150).setVPDistance(1000);
 
         scene.geometries.add(
-                new Tube(new Ray(new Point(0,0,0),new Vector(1,3,5)),5 ).
-                        setEmission(new Color(RED.getRed(), WHITE.getRed(), WHITE.getTransparency())).setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
+                new Tube(new Ray(new Point(0,0,0),new Vector(1,3,5)),7 ).
+                        setEmission(new Color(12, 34, 87)).setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
                 new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),
-                        new Point(-1500, -1500, -2000)).setEmission(new Color(PINK)) //
+                        new Point(-1500, -1500, -2000)).setEmission(new Color(76,176, 184)) //
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
         new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),
-                        new Point(1500, 1500, -2000)).setEmission(new Color(TRANSLUCENT, BLUE.getBlue(), WHITE.getBlue()))
+                        new Point(1500, 1500, -2000)).setEmission(new Color(198, 136, 182))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
                  new Sphere(new Point(0,0,50),25d).setEmission(new Color(RED)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100))
-        , new Sphere(new Point(30,-50,40),15d).setEmission(new Color(GREEN)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100)),
+        , new Sphere(new Point(30,-50,40),15d).setEmission(new Color(147,122,29)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100)),
                 new Sphere(new Point(0,-40,150),7d).setEmission(new Color(black)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100)));
         scene.lights.add( //
                 new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2)) //
