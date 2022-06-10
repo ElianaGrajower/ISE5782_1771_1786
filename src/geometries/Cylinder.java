@@ -8,22 +8,17 @@ import static primitives.Util.*;
 
 public class Cylinder extends Tube{
     private final double height;
-    final Plane base1;
-    final Plane base2;
 
     /**
      * constructor
      * @param axisRay
      * @param radius
      * @param height
-     * @param base1
-     * @param base2
      */
-    public Cylinder(Ray axisRay, double radius, double height, Plane base1, Plane base2) {
+
+    public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
         this.height = height;
-        this.base1 = base1;
-        this.base2 = base2;
     }
 
     @Override
