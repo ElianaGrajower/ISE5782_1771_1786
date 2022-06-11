@@ -119,7 +119,7 @@ public class imagePart7 {
 
                 //sun
                 new Sphere(new Point(7.59,9.44,30),2).setEmission(new Color(YELLOW))
-                        .setMaterial(new Material().setKD(0.001).setkS(0.5).setnShininess(100).setKt(0.6).setKr(0.7)),
+                        .setMaterial(new Material().setKD(0.001).setkS(0.5).setnShininess(100).setKt(0.6).setKr(0.3)),
                         // setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100))
 
                 //birds
@@ -169,15 +169,33 @@ public class imagePart7 {
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.2).setKr(0.3)),
 
                 //tree
-                new Cylinder(new Ray(new Point(8.69,-9.94,0),new Vector(-0.05,3.73,0)),5,
-                        10).setEmission(brown)
-                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
-                new Sphere(new Point(9.65,-9.2,0),1.5).setEmission(new Color(0,35,0))
-                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.2).setKr(0.3)),
-                new Sphere(new Point(9.65,-6.2,-2),1.5).setEmission(new Color(0,35,0))
-                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.2).setKr(0.3)),
-                new Sphere(new Point(9.65,-3.2,-4),1.5).setEmission(new Color(0,35,0))
-                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.2).setKr(0.3))
+                new Cylinder(new Ray(new Point(9.65,-12.2,6.5),new Vector(-0.05,12.5,6.5)),0.4,
+                        3).setEmission(brown)
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
+                new Cylinder(new Ray(new Point(9.65,-8.2,3),new Vector(-0.05,8.2,3)),0.4,
+                        3).setEmission(brown)
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
+                new Cylinder(new Ray(new Point(9.65,-4.2,1),new Vector(-0.05,3.73,1)),0.4,
+                        3).setEmission(brown)
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
+                new Sphere(new Point(9.65,-10,8),1.5).setEmission(new Color(0,35,0))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0).setKr(0.3)),
+                new Sphere(new Point(9.65,-6,4.5),1.5).setEmission(new Color(0,35,0))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0).setKr(0.3)),
+                new Sphere(new Point(9.65,-2,2.5),1.5).setEmission(new Color(0,35,0))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0).setKr(0.3)),
+
+                //clouds
+                new Sphere(new Point(-7.92,6.92,0),1.5).setEmission(new Color(255,255,255))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
+                new Sphere(new Point(-8.5,9.62,0),2).setEmission(new Color(255,255,255))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
+                new Sphere(new Point(-3.01,10.14,0),1.5).setEmission(new Color(255,255,255))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
+                new Sphere(new Point(-1.65,8.06,0),2.3).setEmission(new Color(255,255,255))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
+                new Sphere(new Point(-5.41,8.46,0),2.7).setEmission(new Color(255,255,255))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3))
 
 
                 );
