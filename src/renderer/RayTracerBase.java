@@ -3,6 +3,8 @@ package renderer;
 import primitives.*;
 import scene.Scene;
 
+import java.util.List;
+
 /**
  * @author Mikhal Levy & Eliana Grajower
  */
@@ -24,6 +26,7 @@ public abstract class RayTracerBase {
      * @param ray
      * @return a color
      */
+    public abstract Color traceRays(List<Ray> rays);
     public abstract Color traceRay(Ray ray);
 
     protected boolean softShadows =false;

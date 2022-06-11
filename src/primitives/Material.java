@@ -79,7 +79,10 @@ public class Material {
         this.kT = new Double3(v);
         return this;
     }
-
+    public Material setKt(Double3 v) {
+        this.kT = v;
+        return this;
+    }
     public Material setKr(double i) {
         this.kR = new Double3(i);
         return this;

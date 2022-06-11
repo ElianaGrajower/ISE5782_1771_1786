@@ -20,7 +20,7 @@ public class Scene {
      * private default constructor for scene by the builder scene
      * @param builder scene
      */
-    private Scene(SceneBuilder builder){
+    public Scene(SceneBuilder builder){
         name = builder.name;
         background = builder.background;
         ambientLight = builder.ambientLight;

@@ -2,6 +2,8 @@ package renderer;
 
 import primitives.*;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
@@ -20,8 +22,53 @@ public class Camera {
     private double distance;
     private ImageWriter imageWriter;
     private RayTracerBase rayTracer;
+    private int amountRowPixels;
+    private int amountColumnPixels;
+    private  double debugPrint;
+private int threadsCount = 0;
+    private static final int SPARE_THREADS = 2;
+    public Camera setMultithreading(int threads) {
+        if (threads < 0)
+            throw new IllegalArgumentException("Multithreading parameter must be 0 or higher");
+        if (threads != 0)
+            this.threadsCount = threads;
+        else {
+            int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
+            this.threadsCount = cores <= 2 ? 1 : cores;
+        }
+        return this;
+    }
+    private void ImageThreaded() {
+        final int nX = imageWriter.getNx();
+        final int nY = imageWriter.getNy();
+        final Pixel thePixel = new Pixel(nY, nX);
+        // thePixel.initialize(nY, nX,0.26);
+        // Generate threads
+        Thread[] threads = new Thread[threadsCount];
+        for (int i = threadsCount - 1; i >= 0; --i) {
+            threads[i] = new Thread(() -> {
+                Pixel pixel = new Pixel(nX,nY);
+                while (thePixel.nextPixel(pixel))
+                    castRay(nX, nY, pixel.col, pixel.row);
+            });
+        }
+        // Start threads
+        for (Thread thread : threads)
+            thread.start();
 
+        // Print percents on the console
+        thePixel.printPixel();
 
+        // Ensure all threads have finished
+        for (Thread thread : threads)
+            try {
+                thread.join();
+            } catch (Exception e) {
+            }
+
+        if (thePixel.nextPixel())
+            System.out.print("\r100%");
+    }
     /**
      * constructor
      * @param P0 a point on the camera
@@ -105,6 +152,12 @@ public class Camera {
         return this;
     }
 
+    public Camera setPixels(int amountRowPixels, int amountColumnPixels) {
+        this.amountRowPixels = amountRowPixels;
+        this.amountColumnPixels = amountColumnPixels;
+        return this;
+    }
+
     /**
      * sets the distance of the view plane from the camera
      * @param distance the distance of the view plane from the camera
@@ -128,8 +181,8 @@ public class Camera {
         //ratio
         double Ry = height / nY;
         double Rx = width / nX;
-        double Yi = -(i-(nY-1)/2d)*Ry;
-        double Xj = (j-(nX-1)/2d)*Rx;
+        double Yi = -(i - (nY - 1) / 2d) * Ry;
+        double Xj = (j - (nX - 1) / 2d) * Rx;
         //Pixel[i,j] center:
         Point Pij = Pc;
         if (isZero(Xj) && isZero(Yi)) {
@@ -164,41 +217,91 @@ public class Camera {
                 throw new MissingResourceException("missing resource ", ImageWriter.class.getName(), "");
             }
             if (rayTracer == null) {
-                throw new MissingResourceException("missing resource ", RayTracerBase.class.getName(), "");
+                throw new MissingResourceException("missing resource", rayTracer.getClass().getSimpleName(),"");
             }
-            int nx = imageWriter.getNx();
-            int ny = imageWriter.getNy();
-            for (int i = 0; i < nx; i++) {
-                for (int j = 0; j < ny  ; j++) {
-                    Color pixelColor = castRay(nx, ny, i, j);
-                    imageWriter.writePixel(i, j, pixelColor);
+
+            //rendering the image
+            int nX = imageWriter.getNx();
+            int nY = imageWriter.getNy();
+            for (int i = 0; i < nY; i++) {
+                for (int j = 0; j < nX; j++) {
+                    castRay(nX, nY, i, j);
                 }
             }
-        }
-        catch (MissingResourceException e) {
-            throw new UnsupportedOperationException("Not implemented yet " + e.getClassName());
+        } catch (MissingResourceException e) {
+            throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
         return this;
     }
 
-    private Color castRay(int nx, int ny, int i, int j) {
-        Ray ray = constructRay(nx, ny, i, j);
-        return rayTracer.traceRay(ray);
-    }
 
     public void printGrid(int interval, Color color) {
         if (imageWriter == null)
             throw new MissingResourceException("missing image writer", "Camera", "in print grid");
-        for (int j = 0; j< imageWriter.getNx(); j++)
-            for (int i = 0; i< imageWriter.getNy(); i++)
-                if(j%interval==0 || i%interval==0)
+        for (int j = 0; j < imageWriter.getNx(); j++)
+            for (int i = 0; i < imageWriter.getNy(); i++)
+                if (j % interval == 0 || i % interval == 0)
                     imageWriter.writePixel(j, i, color);
     }
 
     public void writeToImage() {
-        if(imageWriter == null)
+        if (imageWriter == null)
             throw new MissingResourceException("missing image writer", "Camera", "in writeTorImage");
         imageWriter.writeToImage();
+    }
+
+    public List<Ray> constructRays(int nX, int nY, int j, int i) {
+        if (amountColumnPixels <= 0 || amountRowPixels <= 0) {
+            return List.of(constructRay(nX, nY, j, i));
+        }
+        Point Pc = P0.add(v_t0.scale(distance));
+        List<Ray> rays = new LinkedList<>();
+//ratio
+        double Ry = height / nY;
+        double Rx = width / nX;
+        double Yi = -(i - (nY - 1) / 2d) * Ry;
+        double Xj = (j - (nX - 1) / 2d) * Rx;
+//Pixel[i,j]center:
+        Point Pij = Pc;
+        if (!isZero(Yi)) {
+            Pij = Pij.add(v_up.scale(Yi));
+        }
+        if (!isZero(Xj)) {
+            Pij = Pij.add(v_right.scale(Xj));
+        }
+        Ry = Ry / amountColumnPixels;
+        Rx = Rx / amountRowPixels;
+        for (int k = 0; k < amountRowPixels; k++) {
+            for (int l = 0; l < amountColumnPixels; l++) {
+                Point point = Pij;
+                double Yii = -(k -
+                        (amountColumnPixels - 1) / 2d) *
+                        Ry;
+                double Xjj = -(l -
+                        (amountRowPixels - 1) / 2d) * Rx;
+                if (!isZero(Yii)) {
+                    point = point.add(v_up.scale(Yii
+                    ));
+                }
+                if (!isZero(Xjj)) {
+                    point = point.add(v_right.scale(
+                            Xjj));
+                }
+                rays.add(new Ray(P0, point.subtract(P0)));
+            }
+        }
+        return rays;
+    }
+
+    private void castRay(int nX, int nY, int i, int j) {
+        List<Ray> rays = constructRays(nX, nY, i, j);
+        Color pixelColor = rayTracer.traceRays(rays);
+        imageWriter.writePixel(j, i, pixelColor);
+    }
+
+    public Camera setDebugPrint(double v) {
+        this.debugPrint=v;
+        return this;
     }
 
     Camera setShadows(boolean isSoft)
@@ -212,6 +315,4 @@ public class Camera {
         rayTracer.setBeamRadius(r);
         return this;
     }
-
-
 }
