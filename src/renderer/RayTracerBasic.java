@@ -268,7 +268,6 @@ public class RayTracerBasic extends RayTracerBase{
      * @param l     - vector from light
      * @param n     - normal of body
      * @param gp    - point in geometry body
-     ** @param nv
      * @return amount of shadow
      */
 
@@ -383,6 +382,7 @@ public class RayTracerBasic extends RayTracerBase{
             return firstColor;
         int size=rays.size()+10;
         return finalColor.reduce(size);
+    }
 
     public Color traceRays(List<Ray>rays){
         Color sumColor=Color.BLACK;
