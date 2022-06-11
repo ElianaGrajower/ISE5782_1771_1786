@@ -52,6 +52,19 @@ public class RayTracerBasic extends RayTracerBase{
 //
 //        return color;
 //    }
+    private Color calcColor(GeoPoint closestPoint, Ray ray, int rayCounter)
+    {
+        return calcColor(closestPoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K,rayCounter)
+                .add(scene.getAmbientLight().getIntensity());
+    }
+
+    private Color calcColor(GeoPoint point, Ray ray, int level, Double3 k,int rayCounter)
+    {
+        Color color= calcLocalEffects(point, ray,k,rayCounter);
+        return level==1? color:color.add(calcGlobalEffects(point, ray,level,k,rayCounter));
+
+    }
+
 
     /**
      *
@@ -101,6 +114,42 @@ public class RayTracerBasic extends RayTracerBase{
         return color;
     }
 
+    private Color calcLocalEffects(GeoPoint gp, Ray ray,Double3 k, int rayCounter)
+    {
+        Color color = gp.geometry.getEmission();
+        Vector v = ray.getDir();
+        Vector n = gp.geometry.getNormal(gp.point);
+        double nv = alignZero(n.dotProduct(v));
+        Double3 ktr;
+
+        if (nv == 0)
+            return Color.BLACK;
+        Material material = gp.geometry.getMaterial();
+        for (LightSource lightSource : scene.getLights())
+        {
+            Vector l = lightSource.getL(gp.point);
+            double nl = alignZero(n.dotProduct(l));
+            if (nl * nv > 0)        //checking if sign(nl) == sing(nv)
+            {
+                if(softShadows)//we want soft shadows
+                    ktr=transparencyBeam(lightSource,n,gp,rayCounter);
+                else {
+                    ktr = transparency(lightSource, l, n, gp);
+                }
+
+                if(ktr.product(k).biggerThan(MIN_CALC_COLOR_K))
+                {
+                    Color iL = lightSource.getIntensity(gp.point).scale(ktr);
+                    color = color.add(
+                            iL.scale(calcDiffusive(material, nl)),
+                            iL.scale(calcSpecular(material, n, l, nl, v)));
+                }
+            }
+        }
+        return color;
+    }
+
+
     /**
      *
      * @param ray
@@ -112,6 +161,61 @@ public class RayTracerBasic extends RayTracerBase{
     private Color calcGlobalEffect(Ray ray, int level, Double3 kx, Double3 kkx) {
         GeoPoint gp = findClosestIntersection(ray);
         return (gp == null ? scene.getBackground() : calcColor(gp, ray, level - 1, kkx)).scale(kx);
+    }
+
+    private Color calcGlobalEffects(GeoPoint gp,Ray ray, int level, Double3 k,int rayCounter)
+    {
+        Color color=Color.BLACK;
+        Vector normal=gp.geometry.getNormal(gp.point);
+        Material material=gp.geometry.getMaterial();
+        Double3 kkr=material.kR.product(k);
+
+        if(kkr.biggerThan(MIN_CALC_COLOR_K))
+            color=calcGlobalEffect(constructReflectedRay(gp.point,ray,normal),level,material.kR,kkr,rayCounter);
+
+        Double3 kkt =material.kT.product(k);
+
+        if (kkt.biggerThan(MIN_CALC_COLOR_K))
+            color = color.add(
+                    calcGlobalEffect(constructRefractedRay(gp.point, ray, normal), level, material.kT, kkt,rayCounter));
+        return color;
+    }
+
+    private Color calcGlobalEffect(Ray ray, int level, Double3 kx, Double3 kkx, int rayCounter)
+    {
+        GeoPoint gp = findClosestIntersection (ray);
+        return (gp == null ? scene.getBackground() : calcColor(gp, ray, level-1, kkx,rayCounter)).scale(kx);
+    }
+
+    private Double3 transparencyBeam(LightSource lightSource, Vector n, GeoPoint geoPoint,int rayCounter) {
+        Double3 ktr=new Double3(0d);
+        List<Vector> beamL = lightSource.getBeamL(geoPoint.point, beamRadius, rayCounter);
+        Double3 tempKtr = new Double3(0d);
+        for (Vector vl : beamL) {
+            tempKtr= tempKtr.add( transparency(lightSource, vl, n, geoPoint));
+        }
+        ktr = tempKtr.reduce( beamL.size()); //operator "/"
+        return ktr;
+    }
+
+    private Double3 calcDiffusive(Material material, double nl)
+    {
+        return material.kD.scale(Math.abs(nl));
+    }
+
+    private Ray constructRefractedRay(Point point, Ray inRay, Vector n)
+    {
+        return new Ray(point, inRay.getDir(), n);
+    }
+
+    private Ray constructReflectedRay(Point point,  Ray inRay, Vector n)
+    {
+
+        Vector v = inRay.getDir();
+        double vn = v.dotProduct(n);
+
+        Vector r = v.subtract(n.scale(2 * vn)).normalize();
+        return new Ray(point, r, n);
     }
 
     /**
@@ -164,11 +268,10 @@ public class RayTracerBasic extends RayTracerBase{
      * @param l     - vector from light
      * @param n     - normal of body
      * @param gp    - point in geometry body
-     ** @param nv
      * @return amount of shadow
      */
 
-    protected Double3 transparency (LightSource light, Vector l, Vector n, GeoPoint gp,double nv){
+    protected Double3 transparency (LightSource light, Vector l, Vector n, GeoPoint gp){
         Vector lightDirection = l.scale(-1); // from point to light source
         Ray lightRay = new Ray(gp.point,  n,lightDirection);
         double lightDistance = light.getDistance(gp.point);
@@ -233,17 +336,54 @@ public class RayTracerBasic extends RayTracerBase{
      * @param ray
      * @return a color
      */
-    @Override
-    public Color traceRay(Ray ray) {
-        Geometries geometries = scene.geometries;
-        List<GeoPoint> intersection = geometries.findGeoIntersections(ray);
+    public Color traceRay(Ray ray,int rayCounter)
+    {
+        List<GeoPoint> intersection = scene.geometries.findGeoIntersections(ray);
         if (intersection == null)
         {
-            return scene.background;
+            return scene.getBackground();
         }
         GeoPoint closestPoint = ray.findClosestGeoPoint(intersection);
-        return calcColor(closestPoint,ray);
+        return calcColor(closestPoint, ray,rayCounter)==null?scene.
+                getBackground():calcColor(closestPoint,ray,rayCounter);
     }
+
+    @Override
+    public Color traceRay(Ray ray) {
+        return null;
+    }
+
+    public Color traceRay(List<Ray> rays)
+    {
+        Color finalColor=null;
+        Color firstColor=null;
+        Color colorTmp=new Color(0,0,0);
+        for(var ray:rays)
+        {
+            List<GeoPoint> intersection = scene.geometries.findGeoIntersections(ray);
+            if (intersection == null)
+            {
+                return scene.getBackground();
+            }
+            GeoPoint closestPoint = ray.findClosestGeoPoint(intersection);
+            colorTmp=calcColor(closestPoint, ray,rays.size()) == null ? scene.getBackground() :
+                    calcColor(closestPoint, ray,rays.size());
+            if(finalColor==null)
+            {
+                firstColor=colorTmp;
+                finalColor=new Color(0,0,0);
+                for (int i = 0; i < 10; i++)
+                    finalColor=finalColor.add(colorTmp);
+            }
+            if(!colorTmp.equals(firstColor))
+                finalColor=finalColor.add(colorTmp);
+        }
+        if(finalColor.equals(firstColor))
+            return firstColor;
+        int size=rays.size()+10;
+        return finalColor.reduce(size);
+    }
+
     /**
      * //add here the lights effects
      *
@@ -260,7 +400,7 @@ public class RayTracerBasic extends RayTracerBase{
             Vector l = lightSource.getL(point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sign(nv)
-                Double3 ktr = transparency(lightSource, l, n, gp, nv);
+                Double3 ktr = transparency(lightSource, l, n, gp);
                 if (!ktr.product(k).lowerThan(MIN_CALC_COLOR_K)) {
 //                if (unshaded(gp, lightSource, l, n,nv)) {
                     Color iL = lightSource.getIntensity(point).scale(ktr);
@@ -291,6 +431,17 @@ public class RayTracerBasic extends RayTracerBase{
             return Color.BLACK; // view from direction opposite to r vector
         Double3 amount =kS.scale(Math.pow(minusVR, shininess));
         return intensity.scale(amount);
+    }
+
+    private Double3 calcSpecular(Material material, Vector n, Vector l, double nl, Vector v)
+    {
+        Vector r = l.subtract(n.scale(l.dotProduct(n) * 2)).normalize();
+        double minusVR = 0 - alignZero(r.dotProduct(v));
+
+        if (minusVR <= 0)
+            return Double3.ZERO;
+
+        return material.kS.scale(Math.pow(Math.max(0, r.dotProduct(v.scale(-1d))), material.getnShininess()));
     }
 
     /**

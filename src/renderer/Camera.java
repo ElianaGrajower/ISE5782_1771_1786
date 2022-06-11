@@ -201,5 +201,17 @@ public class Camera {
         imageWriter.writeToImage();
     }
 
+    Camera setShadows(boolean isSoft)
+    {
+        rayTracer.setSoftShadows(isSoft);
+        return this;
+    }
+
+    Camera setsBeamRadius(double r)
+    {
+        rayTracer.setBeamRadius(r);
+        return this;
+    }
+
 
 }

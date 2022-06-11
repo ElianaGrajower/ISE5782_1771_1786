@@ -25,6 +25,11 @@ public class Point {
         this.xyz = xyz;
     }
 
+    public Point(Point p)
+    {
+        this.xyz=p.xyz;
+    }
+
     /**
      * adds a vector to a point
      * @param vector
