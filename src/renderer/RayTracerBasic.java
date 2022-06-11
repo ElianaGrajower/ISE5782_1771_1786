@@ -228,21 +228,25 @@ public class RayTracerBasic extends RayTracerBase{
 //        }
 //        return ktr;
 //    }
+
     /**
-     * abstract method that receives a ray.
-     * @param ray
-     * @return a color
+     *
+     * @param rays
+     * @return
      */
-    @Override
-    public Color traceRay(Ray ray) {
-        Geometries geometries = scene.geometries;
-        List<GeoPoint> intersection = geometries.findGeoIntersections(ray);
-        if (intersection == null)
-        {
-            return scene.background;
+
+    public Color traceRays(List<Ray>rays){
+        Color sumColor=Color.BLACK;
+        for(Ray ray:rays){
+            GeoPoint closestPoint=findClosestIntersection(ray);
+            if(closestPoint!=null){
+               sumColor=sumColor.add(calcColor(closestPoint,ray));
+            }else{
+                sumColor=sumColor.add(scene.getBackground(
+                ));
+            }
         }
-        GeoPoint closestPoint = ray.findClosestGeoPoint(intersection);
-        return calcColor(closestPoint,ray);
+        return sumColor.reduce(rays.size());
     }
     /**
      * //add here the lights effects

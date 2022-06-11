@@ -2,6 +2,8 @@ package lighting;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  * @author Mikhal Levi & Eliana Grajower
  */
@@ -20,4 +22,5 @@ public interface LightSource {
      */
     public Vector getL(Point point);
     double getDistance(Point point);
+    public List<Vector> getBeamL(Point p, double radius, int amount);
 }

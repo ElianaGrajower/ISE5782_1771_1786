@@ -8,6 +8,14 @@ public class Point {
     public final static Point ZERO=new Point(0d,0d,0d);
 
     /**
+     *
+     * @param p
+     */
+    public Point(Point p)
+    {
+        this.xyz=p.xyz;
+    }
+    /**
      * constructor
      * @param x
      * @param y

@@ -26,20 +26,22 @@ public class firstImageTests {
 //            new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),
 ///                       new Point(1500, 1500, -2000)).setEmission(new Color(198, 136, 182))
 //                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
-                new Triangle(new Point(-150, -150, -115), new Point(150, -150, -135), new Point(75, 75, -150)) //
+                new Triangle(new Point(-150, -150, -5), new Point(150, -150, -5), new Point(75, 75, -5)) //
                         .setEmission(new Color(76,176, 184)) .setMaterial(new Material().setkS(0.8).setnShininess(60)), //
-                new Triangle(new Point(-150, -150, -115), new Point(-70, 70, -140), new Point(75, 75, -150)) //
+                new Triangle(new Point(-150, -150, -5), new Point(-80, 80, -5), new Point(75, 75, -5)) //
                         .setEmission(new Color(198, 136, 182)).setMaterial(new Material().setkS(0.8).setnShininess(60)), //
-                new Sphere(new Point(-20, 0, -11), 10d) //
+                new Sphere(new Point(-40, 0, -11), 10d) //
                         .setEmission(new Color(java.awt.Color.BLUE)) //
                         .setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(30)),
         new Sphere(new Point(30,25,40),12d).setEmission(new Color(147,122,29)).setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100)),
-       new Tube(new Ray(new Point(0,0,0),new Vector(1,3,5)),7 ).setEmission(new Color(227, 29, 162)).setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3))
+       new Tube(new Ray(new Point(-10, -20, -1),new Vector(1,3,5)),7 ).setEmission(new Color(227, 29, 162)).setMaterial(new Material().setKD(0.9).setkS(0.9).setnShininess(100))
        ); //
-
+scene.setBackground(new Color(blue));
         scene.lights.add( //
                 new SpotLight(new Color(700, 400, 400), new Point(40, 40, 115), new Vector(-1, -1, -4)) //
                         .setkL(4E-4).setkQ(2E-5));
+       scene.lights.add( new SpotLight(new Color(700, 400, 400), new Point (20, 10, 155), new Vector(-1, -11, -4)) //
+                .setkL(4E-4).setkQ(2E-5));
 //        scene.geometries.add(
 //                new Tube(new Ray(new Point(0,0,0),new Vector(1,3,5)),7 ).
 //                        setEmission(new Color(12, 34, 87)).setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
