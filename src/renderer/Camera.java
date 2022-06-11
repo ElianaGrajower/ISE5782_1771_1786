@@ -25,7 +25,7 @@ public class Camera {
     private int amountRowPixels;
     private int amountColumnPixels;
     private  double debugPrint;
-private int threadsCount = 0;
+    private int threadsCount = 0;
     private static final int SPARE_THREADS = 2;
     public Camera setMultithreading(int threads) {
         if (threads < 0)
@@ -38,37 +38,37 @@ private int threadsCount = 0;
         }
         return this;
     }
-    private void ImageThreaded() {
-        final int nX = imageWriter.getNx();
-        final int nY = imageWriter.getNy();
-        final Pixel thePixel = new Pixel(nY, nX);
-        // thePixel.initialize(nY, nX,0.26);
-        // Generate threads
-        Thread[] threads = new Thread[threadsCount];
-        for (int i = threadsCount - 1; i >= 0; --i) {
-            threads[i] = new Thread(() -> {
-                Pixel pixel = new Pixel(nX,nY);
-                while (thePixel.nextPixel(pixel))
-                    castRay(nX, nY, pixel.col, pixel.row);
-            });
-        }
-        // Start threads
-        for (Thread thread : threads)
-            thread.start();
-
-        // Print percents on the console
-        thePixel.printPixel();
-
-        // Ensure all threads have finished
-        for (Thread thread : threads)
-            try {
-                thread.join();
-            } catch (Exception e) {
-            }
-
-        if (thePixel.nextPixel())
-            System.out.print("\r100%");
-    }
+//    private void ImageThreaded() {
+//        final int nX = imageWriter.getNx();
+//        final int nY = imageWriter.getNy();
+//        final Pixel thePixel = new Pixel(nY, nX);
+//        // thePixel.initialize(nY, nX,0.26);
+//        // Generate threads
+//        Thread[] threads = new Thread[threadsCount];
+//        for (int i = threadsCount - 1; i >= 0; --i) {
+//            threads[i] = new Thread(() -> {
+//                Pixel pixel = new Pixel(nX,nY);
+//                while (thePixel.nextPixel(pixel))
+//                    castRay(nX, nY, pixel.col, pixel.row);
+//            });
+//        }
+//        // Start threads
+//        for (Thread thread : threads)
+//            thread.start();
+//
+//        // Print percents on the console
+//        thePixel.printPixel();
+//
+//        // Ensure all threads have finished
+//        for (Thread thread : threads)
+//            try {
+//                thread.join();
+//            } catch (Exception e) {
+//            }
+//
+//        if (thePixel.nextPixel())
+//            System.out.print("\r100%");
+//    }
     /**
      * constructor
      * @param P0 a point on the camera
@@ -296,7 +296,7 @@ private int threadsCount = 0;
     private void castRay(int nX, int nY, int i, int j) {
         List<Ray> rays = constructRays(nX, nY, i, j);
         Color pixelColor = rayTracer.traceRays(rays);
-        imageWriter.writePixel(j, i, pixelColor);
+        imageWriter.writePixel(i,j, pixelColor);
     }
 
     public Camera setDebugPrint(double v) {

@@ -17,7 +17,7 @@ public class imagePart7 {
     private Scene scene = new Scene.SceneBuilder("House scene").build();
     @Test
     public void housePicture(){
-        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0,-1), new Vector(0, 1,0)) //
                 .setVPSize(25, 25).setVPDistance(1000);
         Point A = new Point(2,-4.56733,3.26697);
         Point B = new Point(1.33949,-8.42337,5.64588);
