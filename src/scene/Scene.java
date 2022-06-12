@@ -93,7 +93,7 @@ public class Scene {
         return ambientLight;
     }
 
-    /**build class for builder method*/
+                                         /**build class for builder method*/
     public static class SceneBuilder {
 
         private final String name;

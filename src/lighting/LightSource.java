@@ -22,5 +22,13 @@ public interface LightSource {
      */
     public Vector getL(Point point);
     double getDistance(Point point);
+
+    /**
+     * return list of vectors' the beam
+     * @param p
+     * @param radius
+     * @param amount
+     * @return
+     */
     public List<Vector> getBeamL(Point p, double radius, int amount);
 }

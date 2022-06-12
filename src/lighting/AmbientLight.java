@@ -7,7 +7,11 @@ import primitives.Double3;
  * @author Mikhal Levi & Eliana Grajower
  */
 public class AmbientLight extends Light {
-
+    /**
+     * constructor
+     * @param Ia
+     * @param Ka
+     */
     public AmbientLight(Color Ia, Double3 Ka) {
         super(Ia.scale(Ka));
     }

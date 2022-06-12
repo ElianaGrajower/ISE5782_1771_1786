@@ -36,7 +36,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *
+     *calculate color using recursion
      * @param geopoint
      * @param ray
      * @return
@@ -46,15 +46,9 @@ public class RayTracerBasic extends RayTracerBase{
                 .add(scene.getAmbientLight().getIntensity());
     }
 
-    //    private Color calcColor(GeoPoint gp, Ray ray) {
-//        Color color = scene.getAmbientLight().getIntensity();
-//        color = color.add(calcLocalEffects(gp, ray));
-//
-//        return color;
-//    }
 
     /**
-     *
+     *calculate the color with the point of the intersection
      * @param geoPoint
      * @param ray
      * @param level
@@ -79,7 +73,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *
+     *calculate the global effect of the global lights
      * @param gp
      * @param material
      * @param n
@@ -102,7 +96,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *
+     *calculates the global effect of the lights
      * @param ray
      * @param level
      * @param kx
@@ -115,7 +109,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *
+     *construct a ray of refraction on a point
      * @param point
      * @param v
      * @param n
@@ -126,7 +120,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *
+     *construct the ray of reflection of a point
      * @param pointGeo
      * @param v
      * @param n
@@ -143,12 +137,12 @@ public class RayTracerBasic extends RayTracerBase{
         Vector r = v.subtract(n.scale(2 * vn));
         return new Ray(pointGeo, n, r);
     }
-    // private Color calcColor(GeoPoint geoPoint, Ray ray)
-    //{
-    //  Color result =  scene.ambientLight.getIntensity();
-    // result = result.add(calcLocalEffects(geoPoint, ray));
-    /// return  result;
-    // }
+
+    /**
+     * find the closest intersection between the ray and the geometries
+     * @param ray
+     * @return
+     */
     private GeoPoint findClosestIntersection(Ray ray) {
         List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(ray);
         if (intersections == null) {
@@ -191,46 +185,9 @@ public class RayTracerBasic extends RayTracerBase{
         return ktr;
 
     }
-//    /**
-//     * The method checks whether there is any object shading the light source from a
-//     * point
-//     *
-//     * @param gp the point with its geometry
-//     * @param lightSource light source
-//     * @param l  direction from light to the point
-//     * @param n normal vector from the surface towards the geometry
-//     *
-//     * @return accumulated transparency attenuation factor
-//     */
-//
-//    private Double3 transparency(LightSource lightSource, Vector l, Vector n, GeoPoint gp) {
-//        // Pay attention to your method of distance screening
-//        Vector lightDirection = l.scale(-1); // from point to light source
-//        Point point = gp.point;
-//        Ray lightRay = new Ray(point, n, lightDirection);
-//
-//        double maxdistance = lightSource.getDistance(point);
-//        List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(lightRay, maxdistance);
-//
-//        if (intersections == null)
-//            return Double3.ONE;
-//
-//        Double3 ktr = Double3.ONE;
-////        loop over intersections and for each intersection which is closer to the
-////        point than the light source multiply ktr by 𝒌𝑻 of its geometry.
-////        Performance:
-////        if you get close to 0 –it’s time to get out( return 0)
-//        for (var geo : intersections) {
-//            ktr = ktr.product(geo.geometry.getMaterial().getKt());
-//            if (ktr.lowerThan(MIN_CALC_COLOR_K)) {
-//                return Double3.ZERO;
-//            }
-//        }
-//        return ktr;
-//    }
 
-    /**
-     *
+     /**
+     *intersection of the scene with the ray
      * @param rays
      * @return
      */
@@ -249,7 +206,7 @@ public class RayTracerBasic extends RayTracerBase{
         return sumColor.reduce(rays.size());
     }
     /**
-     * //add here the lights effects
+     *Calculate the color of the local effects of the light
      *
      * @param gp  geopoint of the intersection
      * @param v ray direction
@@ -278,7 +235,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *
+     *helper function- Calculate color of the specular effects of the light
      * @param kS
      * @param n
      * @param l
@@ -298,7 +255,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *
+     *helper function-Calculate color of the diffusive effects of the light
      * @param kD
      * @param nl
      * @param intensity

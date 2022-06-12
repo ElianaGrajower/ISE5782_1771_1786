@@ -73,6 +73,11 @@ public abstract class Intersectable {
                 : geoList.stream().map(gp -> gp.point).toList();
     }
 
+    /**
+     * find intersections between the ray and geometries
+     * @param ray
+     * @return
+     */
     public final List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersections(ray, Double.POSITIVE_INFINITY);
     }

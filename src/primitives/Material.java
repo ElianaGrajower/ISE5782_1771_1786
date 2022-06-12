@@ -1,7 +1,7 @@
 package primitives;
 
 /**
- * @author Mikhal Levi & Eliana Grajower
+ * @author Mikhal Levy & Eliana Grajower
  */
 public class Material {
     public Double3 kD = Double3.ZERO;

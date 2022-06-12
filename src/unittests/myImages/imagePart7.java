@@ -221,7 +221,7 @@ public class imagePart7 {
 
 
         camera.setImageWriter(new ImageWriter("House image", 500, 500)) //
-                .setRayTracer(new RayTracerBasic(scene)) //
+                .setPixels(5,5) .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage() //
                 .writeToImage();
     }

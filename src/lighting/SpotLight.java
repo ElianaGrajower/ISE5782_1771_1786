@@ -17,6 +17,11 @@ public class SpotLight extends PointLight{
         this.direction = direction.normalize();
     }
 
+    /**
+     * getter for intensity
+     * @param point a point
+     * @return
+     */
     public Color getIntensity(Point point)
     {
         double max= Math.max(0,direction.dotProduct(getL(point)));

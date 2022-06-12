@@ -86,6 +86,14 @@ public class PointLight extends Light implements LightSource{
         this.kQ = new Double3(kQ);
         return this;
     }
+
+    /**
+     * return a beam of ray
+     * @param p
+     * @param radius
+     * @param amount
+     * @return
+     */
     @Override
     public List<Vector> getBeamL(Point p, double radius, int amount) {
         if (p.equals(position)) {

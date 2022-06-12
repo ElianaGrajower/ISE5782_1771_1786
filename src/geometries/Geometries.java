@@ -40,7 +40,7 @@ public class Geometries extends Intersectable{
 
 
     /**
-     *
+     *find intersections between the ray and geometries
      * @param ray
      * @param maxDistance
      * @return
