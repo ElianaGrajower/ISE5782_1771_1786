@@ -22,9 +22,29 @@ public abstract class RayTracerBase {
     }
 
     /**
-     *
-     * @param rays
-     * @return
+     * abstract method that receives a ray.
+     * @param ray
+     * @return a color
      */
     public abstract Color traceRays(List<Ray> rays);
+    public abstract Color traceRay(Ray ray);
+
+    protected boolean softShadows =false;
+    protected double beamRadius =20d;//אלומת אור
+
+    public void setSoftShadows(boolean softShadows) {
+        this.softShadows = softShadows;
+    }
+
+    public void setBeamRadius(double beamRadius) {
+        this.beamRadius = beamRadius;
+    }
+
+    public boolean isSoftShadows() {
+        return softShadows;
+    }
+
+    public double getBeamRadius() {
+        return beamRadius;
+    }
 }

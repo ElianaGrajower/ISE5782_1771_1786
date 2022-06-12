@@ -46,6 +46,12 @@ public class RayTracerBasic extends RayTracerBase{
                 .add(scene.getAmbientLight().getIntensity());
     }
 
+    //    private Color calcColor(GeoPoint gp, Ray ray) {
+//        Color color = scene.getAmbientLight().getIntensity();
+//        color = color.add(calcLocalEffects(gp, ray));
+//
+//        return color;
+//    }
 
     /**
      *calculate the color with the point of the intersection

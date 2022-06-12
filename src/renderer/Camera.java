@@ -38,37 +38,37 @@ private int threadsCount = 0;
         }
         return this;
     }
-//    private void ImageThreaded() {
-//        final int nX = imageWriter.getNx();
-//        final int nY = imageWriter.getNy();
-//        final Pixel thePixel = new Pixel(nY, nX);
-//        // thePixel.initialize(nY, nX,0.26);
-//        // Generate threads
-//        Thread[] threads = new Thread[threadsCount];
-//        for (int i = threadsCount - 1; i >= 0; --i) {
-//            threads[i] = new Thread(() -> {
-//                Pixel pixel = new Pixel(nX,nY);
-//                while (thePixel.nextPixel(pixel))
-//                    castRay(nX, nY, pixel.col, pixel.row);
-//            });
-//        }
-//        // Start threads
-//        for (Thread thread : threads)
-//            thread.start();
-//
-//        // Print percents on the console
-//        thePixel.printPixel();
-//
-//        // Ensure all threads have finished
-//        for (Thread thread : threads)
-//            try {
-//                thread.join();
-//            } catch (Exception e) {
-//            }
-//
-//        if (thePixel.nextPixel())
-//            System.out.print("\r100%");
-//    }
+    private void ImageThreaded() {
+        final int nX = imageWriter.getNx();
+        final int nY = imageWriter.getNy();
+        final Pixel thePixel = new Pixel(nY, nX);
+        // thePixel.initialize(nY, nX,0.26);
+        // Generate threads
+        Thread[] threads = new Thread[threadsCount];
+        for (int i = threadsCount - 1; i >= 0; --i) {
+            threads[i] = new Thread(() -> {
+                Pixel pixel = new Pixel(nX,nY);
+                while (thePixel.nextPixel(pixel))
+                    castRay(nX, nY, pixel.col, pixel.row);
+            });
+        }
+        // Start threads
+        for (Thread thread : threads)
+            thread.start();
+
+        // Print percents on the console
+        thePixel.printPixel();
+
+        // Ensure all threads have finished
+        for (Thread thread : threads)
+            try {
+                thread.join();
+            } catch (Exception e) {
+            }
+
+        if (thePixel.nextPixel())
+            System.out.print("\r100%");
+    }
     /**
      * constructor
      *
@@ -87,7 +87,6 @@ private int threadsCount = 0;
 
     /**
      * getter
-     *
      * @return a P0
      */
     public Point getP0() {
@@ -96,7 +95,6 @@ private int threadsCount = 0;
 
     /**
      * getter
-     *
      * @return a v_to
      */
     public Vector getV_t0() {
@@ -105,7 +103,6 @@ private int threadsCount = 0;
 
     /**
      * getter
-     *
      * @return a v_up
      */
     public Vector getV_up() {
@@ -114,7 +111,6 @@ private int threadsCount = 0;
 
     /**
      * getter
-     *
      * @return a v_right
      */
     public Vector getV_right() {
@@ -123,7 +119,6 @@ private int threadsCount = 0;
 
     /**
      * getter
-     *
      * @return a height
      */
     public double getHeight() {
@@ -132,7 +127,6 @@ private int threadsCount = 0;
 
     /**
      * getter
-     *
      * @return a width
      */
     public double getWidth() {
@@ -141,7 +135,6 @@ private int threadsCount = 0;
 
     /**
      * getter
-     *
      * @return a distance
      */
     public double getDistance() {
@@ -150,8 +143,7 @@ private int threadsCount = 0;
 
     /**
      * sets the size of the view plane
-     *
-     * @param width  width of the view plane
+     * @param width width of the view plane
      * @param height height of the view plane
      * @return the size of the view plane
      */
@@ -161,12 +153,6 @@ private int threadsCount = 0;
         return this;
     }
 
-    /**
-     * setters to the row and columns pixels
-     * @param amountRowPixels
-     * @param amountColumnPixels
-     * @return
-     */
     public Camera setPixels(int amountRowPixels, int amountColumnPixels) {
         this.amountRowPixels = amountRowPixels;
         this.amountColumnPixels = amountColumnPixels;
@@ -228,10 +214,6 @@ private int threadsCount = 0;
         return this;
     }
 
-    /**
-     * a method that rendering the image
-     * @return
-     */
     public Camera renderImage() {
         try {
             if (imageWriter == null) {
@@ -255,11 +237,7 @@ private int threadsCount = 0;
         return this;
     }
 
-    /**
-     * a method that prints a grid
-     * @param interval
-     * @param color
-     */
+
     public void printGrid(int interval, Color color) {
         if (imageWriter == null)
             throw new MissingResourceException("missing image writer", "Camera", "in print grid");
@@ -269,23 +247,12 @@ private int threadsCount = 0;
                     imageWriter.writePixel(j, i, color);
     }
 
-    /**
-     * a method that creates an image from the code
-     */
     public void writeToImage() {
         if (imageWriter == null)
             throw new MissingResourceException("missing image writer", "Camera", "in writeTorImage");
         imageWriter.writeToImage();
     }
 
-    /**
-     *  improving the jagged edges - mini project 1(improvements)
-     * @param nX
-     * @param nY
-     * @param j
-     * @param i
-     * @return
-     */
     public List<Ray> constructRays(int nX, int nY, int j, int i) {
         if (amountColumnPixels <= 0 || amountRowPixels <= 0) {
             return List.of(constructRay(nX, nY, j, i));
@@ -340,7 +307,7 @@ private int threadsCount = 0;
     private void castRay(int nX, int nY, int i, int j) {
         List<Ray> rays = constructRays(nX, nY, i, j);
         Color pixelColor = rayTracer.traceRays(rays);
-        imageWriter.writePixel(i, j, pixelColor);
+        imageWriter.writePixel(i,j, pixelColor);
     }
 
     public Camera setDebugPrint(double v) {
