@@ -123,18 +123,24 @@ public class imagePart7 {
                         // setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100))
 
                 //birds
-                new Triangle(new Point(-10,5,0),new Point(-9.94,2.67,0),
+                new Triangle(new Point(-10,5,0),new Point(-9.94,2.67,3),
                         new Point(-9.46,4.15,0)).setEmission(new Color(BLACK))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
                 new Triangle(new Point(-10,5,0),
-                        new Point(-9.46,4.15,0),new Point(-8.33,3.91,0)).setEmission(new Color(BLACK))
+                        new Point(-9.46,4.15,0),new Point(-8.33,3.91,3)).setEmission(new Color(BLACK))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
-//                new Triangle(new Point(-7.02,8.88,2),new Point(-5.79,7.65,2),
-//                        new Point(-5.95,5.6,0)).setEmission(new Color(BLACK))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
-//                new Triangle(new Point(-7.02,8.88,2),new Point(-5.79,7.65,2),
-//                        new Point(-3.74,7.57,0)).setEmission(new Color(BLACK))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
+                new Triangle(new Point(-4.96,3.75,3),new Point(-7.06,4.44,0),
+                        new Point(-6.21,3.93,0)).setEmission(new Color(BLACK))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
+                new Triangle(new Point(-6.58,2.49,3),new Point(-7.06,4.44,0),
+                        new Point(-6.21,3.93,0)).setEmission(new Color(BLACK))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
+                new Triangle(new Point(-6.76,1.44,3),new Point(-8.61,2.79,0),
+                        new Point(-7.87,1.82,0)).setEmission(new Color(BLACK))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
+                new Triangle(new Point(-8.25,0.64,3),new Point(-8.61,2.79,0),
+                        new Point(-7.87,1.82,0)).setEmission(new Color(BLACK))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
 
                 //door
 //                new Polygon(new Point(-3.7,-8.42,5.7),new Point(-3.7,-5.5,5.7),
@@ -186,7 +192,6 @@ public class imagePart7 {
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0).setKr(0.3)),
 
                 //clouds
-                //cloud 1
                 new Sphere(new Point(-7.92,6.92,0),1.5).setEmission(new Color(255,255,255))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
                 new Sphere(new Point(-8.5,9.62,0),2).setEmission(new Color(255,255,255))
@@ -196,27 +201,29 @@ public class imagePart7 {
                 new Sphere(new Point(-1.65,8.06,0),2.3).setEmission(new Color(255,255,255))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
                 new Sphere(new Point(-5.41,8.46,0),2.7).setEmission(new Color(255,255,255))
-                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3))
-                //cloud 2
-//                new Sphere(new Point(-7.92,6.92,0),1.5).setEmission(new Color(255,255,255))
-//                .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
-//                new Sphere(new Point(-8.5,9.62,0),2).setEmission(new Color(255,255,255))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
-//                new Sphere(new Point(-3.01,10.14,0),1.5).setEmission(new Color(255,255,255))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9)),
-//                new Sphere(new Point(-1.65,8.06,0),2.3).setEmission(new Color(255,255,255))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9)),
-//                new Sphere(new Point(-5.41,8.46,0),2.7).setEmission(new Color(255,255,255))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.9).setKr(0.3)),
+
+                //lamp
+                new Polygon(new Point(2.9,-7.20,4),new Point(2.9,-4.15,4),
+                        new Point(3.45,-4.15,4),new Point(3.45,-7.20,4)),
+                new Sphere(new Point(3.21,-3.70,4),0.6).setEmission(new Color(YELLOW))
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.4).setKr(0.3))
 
 
                 );
-//        scene.lights.add(new SpotLight(new Color(YELLOW/*800,500,200*/), new Point(7.59,9.44,10),
-//                new Vector(-6.59,-11.44,0)));
+        //birds/sun
+        scene.lights.add(new SpotLight(new Color(yellow), new Point(-7.27,12.14,5.5),
+                new Vector(-0.12,-8.55,5.5)));
+
+        //sun
         scene.lights.add(new PointLight(new Color(yellow),new Point(6.59,8.44,10)));
         scene.lights.add(new DirectionalLight(new Color(800,500,0), new Vector(5.59,7.44,10)));
 
-       //scene.lights.add(new SpotLight(new Color(800, 500, 0), new Point(6.59,8.44,0),
+        //lamp light
+        scene.lights.add(new PointLight(new Color(255,255,255),new Point(6.59,8.44,10)));
+
+
+        //scene.lights.add(new SpotLight(new Color(800, 500, 0), new Point(6.59,8.44,0),
             //    new Vector(-9.95,-11.61,0)));//.setkL(0.0004).setkQ(0.0000006));
 
 
