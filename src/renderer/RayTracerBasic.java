@@ -211,6 +211,16 @@ public class RayTracerBasic extends RayTracerBase{
         }
         return sumColor.reduce(rays.size());
     }
+    @Override
+    public Color traceRay(Ray ray) {
+        GeoPoint closestPoint = findClosestIntersection(ray);
+        if (closestPoint == null) {
+            return scene.getBackground();
+        }
+        return calcColor(closestPoint, ray);
+
+    }
+
     /**
      *Calculate the color of the local effects of the light
      *

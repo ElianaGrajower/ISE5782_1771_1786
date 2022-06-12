@@ -204,7 +204,8 @@ public class imagePart7 {
         scene.lights.add(new PointLight(new Color(255,255,255),new Point(6.59,8.44,10)));
 
         camera.setImageWriter(new ImageWriter("House image", 500, 500)) //
-                .setPixels(5,5) .setRayTracer(new RayTracerBasic(scene)) //
+                .setPixels(5,5)
+                .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage() //
                 .writeToImage();
     }
