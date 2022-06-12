@@ -41,8 +41,6 @@ public class imagePart7 {
         Color brown = new Color(50,0,0);
 
 
-
-
         scene.geometries.add(
 
                 //building
@@ -66,12 +64,6 @@ public class imagePart7 {
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
                 new Triangle(F,E,B).setEmission(new Color(GRAY))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
-//                new Triangle(F,H,C).setEmission(new Color(GRAY))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
-//                new Triangle(C,B,F).setEmission(new Color(GRAY))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
-
-
                 new Triangle(H,C,new Point(1.33949,-5.5,5.64588))
                         .setEmission(new Color(GRAY))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
@@ -90,10 +82,6 @@ public class imagePart7 {
                 new Triangle(F,new Point(-6.45236,-5.5,5.64588),new Point(-3.7,-5.5,5.7))
                         .setEmission(new Color(GRAY))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
-//                new Polygon(new Point(-3.7,-8.42,5.7),new Point(-3.7,-5.5,5.7),
-//                        new Point(-1.5,-5.5,5.7),new Point(-1.5,-8.42,5.7))
-//                        .setEmission(new Color(BLUE))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
 
                 //roof
                 new Triangle(H,G,I).setEmission(new Color(RED))
@@ -120,7 +108,6 @@ public class imagePart7 {
                 //sun
                 new Sphere(new Point(7.59,9.44,10),2).setEmission(new Color(YELLOW))
                         .setMaterial(new Material().setKD(0.001).setkS(0.5).setnShininess(100).setKt(0.6).setKr(0.3)),
-                        // setMaterial(new Material().setKD(0.5).setkS(0.5).setnShininess(100))
 
                 //birds
                 new Triangle(new Point(-10,5,0),new Point(-9.94,2.67,3),
@@ -141,12 +128,6 @@ public class imagePart7 {
                 new Triangle(new Point(-8.25,0.64,3),new Point(-8.61,2.79,0),
                         new Point(-7.87,1.82,0)).setEmission(new Color(BLACK))
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0)),
-
-                //door
-//                new Polygon(new Point(-3.7,-8.42,5.7),new Point(-3.7,-5.5,5.7),
-//                        new Point(-1.9,-6.58,6.1),new Point(-1.9,-9,6.1))
-//                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.7)),
-
                 new Triangle(new Point(-3.7,-8.42,5.7),new Point(-3.7,-5.5,5.7),
                         new Point(-1.9,-9,6.1))
                         .setEmission(brown)
@@ -221,11 +202,6 @@ public class imagePart7 {
 
         //lamp light
         scene.lights.add(new PointLight(new Color(255,255,255),new Point(6.59,8.44,10)));
-
-
-        //scene.lights.add(new SpotLight(new Color(800, 500, 0), new Point(6.59,8.44,0),
-            //    new Vector(-9.95,-11.61,0)));//.setkL(0.0004).setkQ(0.0000006));
-
 
         camera.setImageWriter(new ImageWriter("House image", 500, 500)) //
                 .setRayTracer(new RayTracerBasic(scene)) //
