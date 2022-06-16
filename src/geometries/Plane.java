@@ -7,8 +7,8 @@ import java.util.List;
 import static primitives.Util.*;
 
 /**
- *
- * @author Mikhal Levi & Eliana Grajower
+ * a class of planes
+ * @author Mikhal Levi and Eliana Grajower
  */
 public class Plane extends FlatGeometry{
     private final Point q0;

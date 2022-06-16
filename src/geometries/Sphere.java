@@ -6,14 +6,18 @@ import java.util.List;
 
 import static primitives.Util.alignZero;
 
+/**
+ * a class of spheres
+ * @author Mikhal Levi and Eliana Grajower
+ */
 public class Sphere extends Geometry{
     private final Point center;
     private final double radius;
 
     /**
      * constructor
-     * @param center
-     * @param radius
+     * @param center center
+     * @param radius a radius
      */
     public Sphere(Point center, double radius) {
         this.center = center;

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * This interface will serve all geometric classes
- * @author Mikhal Levy & Eliana Grajower
+ * @author Mikhal Levy and Eliana Grajower
  */
 public abstract class Geometry extends Intersectable{
     protected Color emission = Color.BLACK;
@@ -21,7 +21,7 @@ public abstract class Geometry extends Intersectable{
 
     /**
      * getter for material
-     * @return
+     * @return material
      */
     public Material getMaterial() {
         return material;
@@ -29,7 +29,8 @@ public abstract class Geometry extends Intersectable{
 
     /**
      * sets the emission
-     * @param emission
+     * @param emission a color
+     * @return geometry
      */
     public Geometry setEmission(Color emission) {
         this.emission = emission;
@@ -37,15 +38,15 @@ public abstract class Geometry extends Intersectable{
     }
 
     /**
-     * @param point
+     * @param point a point
      * @return the normal to the vector in a specific point
      */
     public abstract Vector getNormal(Point point);    //is this supposed to be public????
 
     /**
      * a material setter that returns a geometry
-     * @param material
-     * @return
+     * @param material a material
+     * @return geometry
      */
     public Geometry setMaterial(Material material) {
         this.material = material;

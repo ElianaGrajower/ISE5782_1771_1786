@@ -7,6 +7,10 @@ import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 import geometries.Intersectable.GeoPoint;
 
+/**
+ * a class of rays
+ * @author Mikhal Levi and Eliana Grajower
+ */
 public class Ray {
 
     private static final double DELTA = 0.1;
@@ -15,8 +19,8 @@ public class Ray {
 
     /**
      * constructor
-     * @param p0
-     * @param dir
+     * @param p0 a point
+     * @param dir a direction vector
      */
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
@@ -25,9 +29,9 @@ public class Ray {
 
     /**
      * constructor for ray a little moved
-     * @param point
-     * @param direction
-     * @param normal
+     * @param point a point
+     * @param direction direction vector
+     * @param normal normal vector
      */
     public Ray(Point point, Vector normal, Vector direction)
     {
@@ -39,16 +43,25 @@ public class Ray {
         Vector normalDelta = normal.scale((nv > 0 ? DELTA : -DELTA));
         p0 = point.add(normalDelta);
     }
+
+    /**
+     * gets P0
+     * @return point
+     */
     public Point getP0() {
         return p0;
     }
 
+    /**
+     * gets direction
+     * @return a vector
+     */
     public Vector getDir() {
         return dir;
     }
     /**
      * checks if objects are equal to each other
-     * @param obj
+     * @param obj an object
      * @return true or false
      */
     @Override
@@ -62,7 +75,7 @@ public class Ray {
 
     /**
      * prints a ray type
-     * @return
+     * @return a string
      */
     @Override
     public String toString() {
@@ -84,8 +97,8 @@ public class Ray {
 
     /**
      * return the closest point to the ray head
-     * @param points
-     * @return
+     * @param points a point
+     * @return a point
      */
     public Point findClosestPoint(List<Point> points) {
         return points == null || points.isEmpty() ? null
@@ -93,9 +106,9 @@ public class Ray {
     }
 
     /**
-     * find the closest geopoint with the ray
-     * @param geoPointList
-     * @return
+     * find the closest geoPoint with the ray
+     * @param geoPointList a list of geo points
+     * @return geoPoint
      */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointList){
        GeoPoint result= null;

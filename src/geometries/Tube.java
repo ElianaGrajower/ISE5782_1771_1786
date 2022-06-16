@@ -9,6 +9,10 @@ import java.util.List;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
+/**
+ * a class of tubes finite cylinders
+ * @author Mikhal Levi and Eliana Grajower
+ */
 public class Tube extends Geometry{
     protected final Ray axisRay;
     protected final double radius;

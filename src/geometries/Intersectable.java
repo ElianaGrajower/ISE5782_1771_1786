@@ -6,17 +6,9 @@ import java.util.List;
 
 /**
  * interface for finding intersection points
- * @author Mikhal Levy & Eliana Grajower
+ * @author Mikhal Levy and Eliana Grajower
  */
 public abstract class Intersectable {
-
-    /**
-     * @param ray {@link Ray} pointing towards the object
-     * @return List of intersection {@link Point}s
-     */
-    /** public List<Point> findIntersections(Ray ray) {
-        return null;
-    }*/
 
     /**
      * a class of geoPoints
@@ -64,7 +56,7 @@ public abstract class Intersectable {
 
     /**
      * finds intersections between rays and points
-     * @param ray
+     * @param ray a ray
      * @return list of points
      */
     public List<Point> findIntersections(Ray ray) {
@@ -75,8 +67,8 @@ public abstract class Intersectable {
 
     /**
      * find intersections between the ray and geometries
-     * @param ray
-     * @return
+     * @param ray a ray
+     * @return a list of geo points
      */
     public final List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersections(ray, Double.POSITIVE_INFINITY);
@@ -84,7 +76,7 @@ public abstract class Intersectable {
 
     /**
      * finds intersections between rays and geoPoints
-     * @param ray
+     * @param ray a ray
      * @return a list of geo points
      */
     public final List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance)
@@ -94,7 +86,7 @@ public abstract class Intersectable {
 
     /**
      * a function that helps the findGeoIntersections function
-     * @param ray
+     * @param ray a ray
      * @return a list of geo points
      */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance);

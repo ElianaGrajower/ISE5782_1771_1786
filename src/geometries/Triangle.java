@@ -6,6 +6,10 @@ import primitives.Vector;
 
 import java.util.List;
 
+/**
+ * a class of triangles
+ * @author Mikhal Levi and Eliana Grajower
+ */
 public class Triangle extends Polygon{
     /**
      * constructor
@@ -27,14 +31,11 @@ public class Triangle extends Polygon{
     }
 
     /**
-     * @param ray
+     *
+     * @param ray ray
+     * @param maxDistance the max distance that it can have
      * @return
      */
-  /** @Override
-    public List<Point> findIntersections(Ray ray) {
-       return super.findIntersections(ray);
-   }*/
-
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance)
     {

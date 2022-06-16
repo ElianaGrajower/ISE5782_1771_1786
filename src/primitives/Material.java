@@ -1,13 +1,17 @@
 package primitives;
 
 /**
- * @author Mikhal Levy & Eliana Grajower
+ * a class of materials
+ * @author Mikhal Levy and Eliana Grajower
  */
 public class Material {
     public Double3 kD = Double3.ZERO;
     public Double3 kS = Double3.ZERO;
     public int nShininess = 0;
-    public Double3 kT=Double3.ZERO;//transparency
+    /**
+     * transparency
+     */
+    public Double3 kT=Double3.ZERO;
     public Double3 kR=Double3.ZERO;
     /**
      * setter for kd using double
@@ -59,10 +63,18 @@ public class Material {
         return this;
     }
 
+    /**
+     * gets the ks
+     * @return ks
+     */
     public Double3 getkS() {
         return kS;
     }
 
+    /**
+     * gets shininess
+     * @return shininess
+     */
     public int getnShininess() {
         return nShininess;
     }
@@ -75,10 +87,21 @@ public class Material {
         return kT;
     }
 
+    /**
+     * sets the kt
+     * @param v
+     * @return
+     */
     public Material setKt(double v) {
         this.kT = new Double3(v);
         return this;
     }
+
+    /**
+     * sets the kt
+     * @param v a double3 number
+     * @return material
+     */
     public Material setKt(Double3 v) {
         this.kT = v;
         return this;

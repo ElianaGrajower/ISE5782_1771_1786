@@ -5,7 +5,8 @@ import primitives.*;
 import java.util.List;
 
 /**
- * @author Mikhal Levi & Eliana Grajower
+ * a class of a light sourse
+ * @author Mikhal Levi and Eliana Grajower
  */
 public interface LightSource {
     /**

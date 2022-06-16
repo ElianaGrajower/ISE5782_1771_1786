@@ -6,7 +6,8 @@ import scene.Scene;
 import java.util.List;
 
 /**
- * @author Mikhal Levy & Eliana Grajower
+ * an abstract class of ray trace base
+ * @author Mikhal Levy and Eliana Grajower
  */
 
 public abstract class RayTracerBase {
@@ -23,14 +24,14 @@ public abstract class RayTracerBase {
 
     /**
      * abstract method that receives a ray.
-     * @param ray
+     * @param rays
      * @return a color
      */
     public abstract Color traceRays(List<Ray> rays);
     public abstract Color traceRay(Ray ray);
 
     protected boolean softShadows =false;
-    protected double beamRadius =20d;//אלומת אור
+    protected double beamRadius =20d; //light beam radius
 
     public void setSoftShadows(boolean softShadows) {
         this.softShadows = softShadows;

@@ -11,6 +11,10 @@ import java.util.Random;
 
 import static primitives.Util.isZero;
 
+/**
+ * a class of point lights
+ * @author Miachal Levi and eliana Grajower
+ */
 public class PointLight extends Light implements LightSource{
     private Point position;
     private Double3 kC = Double3.ONE;
@@ -19,7 +23,7 @@ public class PointLight extends Light implements LightSource{
     private static final Random RND = new Random();
     /**
      * constructor
-     * @param intensity
+     * @param intensity color
      */
     public PointLight(Color intensity, Point position) {
         super(intensity);
@@ -28,9 +32,8 @@ public class PointLight extends Light implements LightSource{
 
     /**
      * getter for intensity
-     *
      * @param point a point
-     * @return
+     * @return color
      */
     @Override
     public Color getIntensity(Point point) {
@@ -43,9 +46,8 @@ public class PointLight extends Light implements LightSource{
 
     /**
      * getter for light
-     *
      * @param point point
-     * @return
+     * @return vector
      */
     @Override
     public Vector getL(Point point) {

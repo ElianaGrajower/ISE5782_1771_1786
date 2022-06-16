@@ -9,6 +9,9 @@ import renderer.ImageWriter;
 import renderer.RayTracerBasic;
 import scene.Scene;
 
+/**
+ * testing the depth
+ */
 public class Depth {
 
 

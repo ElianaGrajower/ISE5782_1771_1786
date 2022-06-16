@@ -9,7 +9,7 @@ import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for primitives.Point class
- * @author Eliana Grajower & Mikhal Levy
+ * @author Eliana Grajower and Mikhal Levy
  */
 public class PointTests {
 

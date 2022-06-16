@@ -9,6 +9,10 @@ import primitives.Color;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * a class of scene
+ * @author Miachal Levi and eliana Grajower
+ */
 public class Scene {
    public String name;
    public Color background = Color.BLACK;

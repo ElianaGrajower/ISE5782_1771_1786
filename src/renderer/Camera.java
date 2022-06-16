@@ -10,7 +10,7 @@ import static primitives.Util.isZero;
 import java.util.stream.*;
 /**
  * a class of a camera
- * @author Mikhal Levy & Eliana Grajower
+ * @author Mikhal Levy and Eliana Grajower
  */
 public class Camera {
     private Point P0;
@@ -153,6 +153,12 @@ private int threadsCount = 0;
         return this;
     }
 
+    /**
+     * sets the pixel
+     * @param amountRowPixels row
+     * @param amountColumnPixels column
+     * @return camera
+     */
     public Camera setPixels(int amountRowPixels, int amountColumnPixels) {
         this.amountRowPixels = amountRowPixels;
         this.amountColumnPixels = amountColumnPixels;
@@ -204,16 +210,30 @@ private int threadsCount = 0;
         return new Ray(P0, Pij.subtract(P0));
     }
 
+    /**
+     * sets the image writer
+     * @param imageWriter image
+     * @return camera
+     */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
+    /**
+     * sets the ray tracer
+     * @param rayTracer traces the ray
+     * @return camera
+     */
     public Camera setRayTracer(RayTracerBasic rayTracer) {
         this.rayTracer = rayTracer;
         return this;
     }
 
+    /**
+     * renders the image
+     * @return a camera
+     */
     public Camera renderImage() {
         try {
             if (imageWriter == null) {
@@ -241,7 +261,11 @@ private int threadsCount = 0;
         return this;
     }
 
-
+    /**
+     * the grid where the image is printed
+     * @param interval number
+     * @param color the color of the grid
+     */
     public void printGrid(int interval, Color color) {
         if (imageWriter == null)
             throw new MissingResourceException("missing image writer", "Camera", "in print grid");
@@ -251,12 +275,23 @@ private int threadsCount = 0;
                     imageWriter.writePixel(j, i, color);
     }
 
+    /**
+     * writes to the image
+     */
     public void writeToImage() {
         if (imageWriter == null)
             throw new MissingResourceException("missing image writer", "Camera", "in writeTorImage");
         imageWriter.writeToImage();
     }
 
+    /**
+     * constructs ray through a pixel
+     * @param nX nx
+     * @param nY ny
+     * @param j index
+     * @param i index
+     * @return list of rays
+     */
     public List<Ray> constructRays(int nX, int nY, int j, int i) {
         if (amountColumnPixels <= 0 || amountRowPixels <= 0) {
             return List.of(constructRay(nX, nY, j, i));
@@ -314,6 +349,11 @@ private int threadsCount = 0;
         imageWriter.writePixel(i,j, pixelColor);
     }
 
+    /**
+     * sets the print
+     * @param v number
+     * @return camera
+     */
     public Camera setDebugPrint(double v) {
         this.debugPrint=v;
         return this;

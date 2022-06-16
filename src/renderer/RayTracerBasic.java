@@ -15,7 +15,8 @@ import static primitives.Util.isZero;
 
 
 /**
- * @author Mikhal Levy & Eliana Grajower
+ * a class of ray tracer basic
+ * @author Mikhal Levy and Eliana Grajower
  */
 public class RayTracerBasic extends RayTracerBase{
 

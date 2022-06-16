@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * class for geometries
- * @author Mikhal Levy & Eliana Grajower
+ * @author Mikhal Levy and Eliana Grajower
  */
 public class Geometries extends Intersectable{
     private List<Intersectable> intersectables = new LinkedList<>();

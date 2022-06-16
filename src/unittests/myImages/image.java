@@ -15,7 +15,7 @@ import static java.awt.Color.*;
 
 /**
  * our final picture
- * @author Mikhal Levi & Eliana Grajower
+ * @author Mikhal Levi and Eliana Grajower
  */
 
 public class image {

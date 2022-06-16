@@ -2,14 +2,18 @@ package primitives;
 
 import java.util.Objects;
 
+/**
+ * a class of points
+ * @author Miachal Levi and eliana Grajower
+ */
 public class Point {
 
     final Double3 xyz;
     public final static Point ZERO=new Point(0d,0d,0d);
 
     /**
-     *
-     * @param p
+     *constructor
+     * @param p a point
      */
     public Point(Point p)
     {
@@ -17,9 +21,9 @@ public class Point {
     }
     /**
      * constructor
-     * @param x
-     * @param y
-     * @param z
+     * @param x part of a point
+     * @param y part of a point
+     * @param z part of a point
      */
     public Point(double x, double y, double z) {
         xyz = new Double3(x,y,z);
@@ -27,7 +31,7 @@ public class Point {
 
     /**
      * constructor
-     * @param xyz
+     * @param xyz a point
      */
     public Point(Double3 xyz){
         this.xyz = xyz;
@@ -35,7 +39,7 @@ public class Point {
 
     /**
      * adds a vector to a point
-     * @param vector
+     * @param vector a vector
      * @return a new point
      */
     public Point add(Vector vector){
@@ -44,7 +48,7 @@ public class Point {
 
     /**
      * creates a vector out of 2 points
-     * @param point
+     * @param point a point
      * @return the vector that it creates
      */
     public Vector subtract(Point point){
@@ -53,7 +57,7 @@ public class Point {
 
     /**
      * checks if objects are equal to each other
-     * @param object
+     * @param object an object
      * @return true or false
      */
     @Override
@@ -66,7 +70,7 @@ public class Point {
 
     /**
      * prints a point type
-     * @return
+     * @return a string
      */
     @Override
     public String toString() {
@@ -75,7 +79,7 @@ public class Point {
 
     /**
      * calculates the distance between points squared
-     * @param point
+     * @param point a point
      * @return the distance squared of the points
      */
     public double distanceSquared(Point point){
@@ -87,7 +91,7 @@ public class Point {
 
     /**
      * calculates the distance between the squares
-     * @param point
+     * @param point a point
      * @return the distance
      */
     public double distance(Point point){

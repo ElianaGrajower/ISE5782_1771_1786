@@ -10,6 +10,10 @@ import renderer.*;
 import scene.Scene;
 import static java.awt.Color.*;
 
+/**
+ * a first image
+ * @author Mikhal Levi and Eliana Grajower
+ */
 public class firstImageTests {
     private Scene scene = new Scene.SceneBuilder("Test scene").build();
     @Test

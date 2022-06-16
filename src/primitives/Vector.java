@@ -1,11 +1,15 @@
 package primitives;
 
+/**
+ * a class of vectors
+ * @author Miachal Levi and eliana Grajower
+ */
 public class Vector extends Point {
     /**
      * constructor
-     * @param x
-     * @param y
-     * @param z
+     * @param x a part of a vector
+     * @param y a part of a vector
+     * @param z a part of a vector
      */
     public Vector(double x, double y, double z){
         super(x, y, z);
@@ -14,7 +18,7 @@ public class Vector extends Point {
 
     /**
      * constructor
-     * @param xyz
+     * @param xyz a vector
      */
     public Vector(Double3 xyz){
         super(xyz);
@@ -22,7 +26,7 @@ public class Vector extends Point {
     }
     /**
      * checks if objects are equal to each other
-     * @param object
+     * @param object an object
      * @return true or false.
      */
     @Override
@@ -32,7 +36,7 @@ public class Vector extends Point {
 
     /**
      * add two vectors together
-     * @param vector
+     * @param vector a vector
      * @return the new vector
      */
     @Override
@@ -59,7 +63,7 @@ public class Vector extends Point {
 
     /**
      * multiplies a vector by a scalar
-     * @param scalar
+     * @param scalar a number
      * @return the calculation
      */
     public Vector scale(double scalar)
@@ -73,17 +77,13 @@ public class Vector extends Point {
      * B = b1 * i + b2 * j + b3 * k. Where i, j and k are the unit vector along the
      * x, y and z directions. Then dot product is calculated as
      * dot product = a1 * b1 + a2 * b2 + a3 * b3
-     * @param vector
+     * @param vector a vector
      * @return the calculation
      */
     public double dotProduct(Vector vector){
         return this.xyz.d1 * vector.xyz.d1 +
                 this.xyz.d2 * vector.xyz.d2 +
                 this.xyz.d3 * vector.xyz.d3;
-//        double x1= xyz.product(vector.xyz).d1;
-//        double x2= xyz.product(vector.xyz).d2;
-//        double x3= xyz.product(vector.xyz).d3;
-//        return x1+x2+x3;
     }
 
     /**
@@ -93,7 +93,7 @@ public class Vector extends Point {
      * cross product = (a2 * b3 – a3 * b2) * i + (a3 * b1 – a1 * b3) * j + (a1 * b2 – a2 * b1) * k,
      * where [(a2 * b3 – a3 * b2), (a3 * b1 – a1 * b3), (a1 * b2 – a2 * b1)] are the
      * coefficient of unit vector along i, j and k directions.
-     * @param vector
+     * @param vector a vector
      * @return the calculation
      */
     public Vector crossProduct(Vector vector){
@@ -105,7 +105,7 @@ public class Vector extends Point {
 
     /**
      * normalize a vector
-     * @return
+     * @return vector
      */
     public Vector normalize(){
         return new Vector(xyz.reduce(length()));
@@ -113,7 +113,7 @@ public class Vector extends Point {
 
     /**
      * prints a vector type
-     * @return
+     * @return string
      */
     @Override
     public String toString() {

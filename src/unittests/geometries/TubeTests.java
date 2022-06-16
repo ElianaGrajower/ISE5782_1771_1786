@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for geometries.Tube class
- * @author Eliana Grajower & Mikhal Levy
+ * @author Eliana Grajower and Mikhal Levy
  */
 public class TubeTests {
 

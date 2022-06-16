@@ -4,13 +4,17 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
 
+/**
+ * a class of spotLights
+ * @author Miachal Levi and eliana Grajower
+ */
 public class SpotLight extends PointLight{
     private Vector direction;
     private double narrowBeam = 0d;
 
     /**
      * constructor
-     * @param intensity
+     * @param intensity color
      */
     public SpotLight(Color intensity, Point position, Vector direction) {
         super(intensity, position);
@@ -20,7 +24,7 @@ public class SpotLight extends PointLight{
     /**
      * getter for intensity
      * @param point a point
-     * @return
+     * @return color
      */
     public Color getIntensity(Point point)
     {
@@ -28,6 +32,11 @@ public class SpotLight extends PointLight{
         return super.getIntensity(point).scale(max);
     }
 
+    /**
+     * sets a narrow beam
+     * @param narrowBeam a narrow beam of light
+     * @return spotLight
+     */
     public SpotLight setNarrowBeam(double narrowBeam) {
         this.narrowBeam = narrowBeam;
         return this;

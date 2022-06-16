@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 /**
  * Unit tests for primitives.Vector class
- * @author Eliana Grajower & Mikhal Levy
+ * @author Eliana Grajower and Mikhal Levy
  */
 public class vectorTests {
 

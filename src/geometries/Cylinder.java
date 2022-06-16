@@ -11,7 +11,8 @@ import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
- *  a finite tube
+ *  a class of cylinders
+ * @author Mikhal Levi and Eliana Grajower
  */
 public class Cylinder extends Tube {
     final private double height;
