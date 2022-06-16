@@ -20,10 +20,6 @@ import static java.awt.Color.*;
 
 public class imageWithImprovments {
     private Scene scene = new Scene.SceneBuilder("House scene").build();
-
-    /**
-     * testing the final project
-     */
     @Test
     public void housePicture(){
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0,-1), new Vector(0, 1,0)) //

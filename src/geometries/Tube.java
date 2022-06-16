@@ -19,8 +19,8 @@ public class Tube extends Geometry{
 
     /**
      * constructor
-     * @param axisRay x ray
-     * @param radius the radius
+     * @param axisRay
+     * @param radius
      */
     public Tube(Ray axisRay, double radius) {
         this.axisRay = axisRay;
@@ -37,7 +37,7 @@ public class Tube extends Geometry{
 
     /**
      * prints the tube type
-     * @return string
+     * @return
      */
     @Override
     public String toString() {
@@ -47,11 +47,13 @@ public class Tube extends Geometry{
 
     /**
      * method to find a normal in a point
-     * @param point a point
-     * @return vector
+     * @param point
+     * @return
      */
     @Override
     public  Vector getNormal(Point point) {
+
+
         Point P0 = axisRay.getP0();
         Vector v = axisRay.getDir();
 
@@ -76,12 +78,12 @@ public class Tube extends Geometry{
 
 
     /**
-     * find geo intersections with the get ray
-     * @param ray a ray
-     * @param maxDistance the distances max
-     * @return a list of geo points
+     * find geo intersections with the getted ray
+     * @param ray
+     * @param maxDistance
+     * @return
      */
-    @Override
+    @Override ////////fix whatever is related to the unshaded bonus!!!!!!!!!!!
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance){
         Vector vAxis = axisRay.getDir();
         Vector v = ray.getDir();

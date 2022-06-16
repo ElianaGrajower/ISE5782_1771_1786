@@ -77,7 +77,6 @@ public abstract class Intersectable {
     /**
      * finds intersections between rays and geoPoints
      * @param ray a ray
-     * @param maxDistance the distances max
      * @return a list of geo points
      */
     public final List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance)
@@ -88,7 +87,6 @@ public abstract class Intersectable {
     /**
      * a function that helps the findGeoIntersections function
      * @param ray a ray
-     * @param maxDistance the distances max
      * @return a list of geo points
      */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance);
