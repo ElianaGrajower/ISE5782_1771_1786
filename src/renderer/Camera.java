@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
-
+import java.util.stream.*;
 /**
  * a class of a camera
  * @author Mikhal Levy & Eliana Grajower
@@ -25,19 +25,19 @@ public class Camera {
     private int amountRowPixels;
     private int amountColumnPixels;
     private  double debugPrint;
-    private int threadsCount = 0;
+private int threadsCount = 0;
     private static final int SPARE_THREADS = 2;
-    public Camera setMultithreading(int threads) {
-        if (threads < 0)
-            throw new IllegalArgumentException("Multithreading parameter must be 0 or higher");
-        if (threads != 0)
-            this.threadsCount = threads;
-        else {
-            int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
-            this.threadsCount = cores <= 2 ? 1 : cores;
-        }
-        return this;
-    }
+//    public Camera setMultithreading(int threads) {
+//        if (threads < 0)
+//            throw new IllegalArgumentException("Multithreading parameter must be 0 or higher");
+//        if (threads != 0)
+//            this.threadsCount = threads;
+//        else {
+//            int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
+//            this.threadsCount = cores <= 2 ? 1 : cores;
+//        }
+//        return this;
+//    }
 //    private void ImageThreaded() {
 //        final int nX = imageWriter.getNx();
 //        final int nY = imageWriter.getNy();
@@ -222,15 +222,19 @@ public class Camera {
             if (rayTracer == null) {
                 throw new MissingResourceException("missing resource", rayTracer.getClass().getSimpleName(),"");
             }
-
+           //multithreadig
             //rendering the image
             int nX = imageWriter.getNx();
             int nY = imageWriter.getNy();
-            for (int i = 0; i < nY; i++) {
-                for (int j = 0; j < nX; j++) {
-                    castRay(nX, nY, i, j);
-                }
-            }
+           IntStream.range(0,nY).parallel().forEach(i->{
+               IntStream.range(0,nX).parallel().forEach(j->{
+                   castRay(nX,nY,j,i);
+                   Pixel.pixelDone();
+                   Pixel.printPixel();
+               });
+           });
+
+
         } catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }

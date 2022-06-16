@@ -145,6 +145,20 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
+     *
+     * @param ray
+     * @return
+     */
+    @Override
+    public Color traceRay(Ray ray) {
+        GeoPoint closestPoint = findClosestIntersection(ray);
+        if (closestPoint == null) {
+            return scene.getBackground();
+        }
+        return calcColor(closestPoint, ray);
+
+    }
+    /**
      * find the closest intersection between the ray and the geometries
      * @param ray
      * @return
@@ -211,16 +225,6 @@ public class RayTracerBasic extends RayTracerBase{
         }
         return sumColor.reduce(rays.size());
     }
-    @Override
-    public Color traceRay(Ray ray) {
-        GeoPoint closestPoint = findClosestIntersection(ray);
-        if (closestPoint == null) {
-            return scene.getBackground();
-        }
-        return calcColor(closestPoint, ray);
-
-    }
-
     /**
      *Calculate the color of the local effects of the light
      *
@@ -251,7 +255,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *helper function- Calculate color of the specular effects of the light
+     *
      * @param kS
      * @param n
      * @param l
@@ -271,7 +275,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     /**
-     *helper function-Calculate color of the diffusive effects of the light
+     *
      * @param kD
      * @param nl
      * @param intensity
