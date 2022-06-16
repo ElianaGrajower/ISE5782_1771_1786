@@ -222,7 +222,7 @@ private int threadsCount = 0;
             if (rayTracer == null) {
                 throw new MissingResourceException("missing resource", rayTracer.getClass().getSimpleName(),"");
             }
-
+           //multithreadig
             //rendering the image
             int nX = imageWriter.getNx();
             int nY = imageWriter.getNy();
