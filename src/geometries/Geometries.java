@@ -15,7 +15,7 @@ public class Geometries extends Intersectable{
 
     /**
      * constructor
-     * @param geometries
+     * @param geometries geometric shapes
      */
     public Geometries(Intersectable... geometries) {
         add(geometries);
@@ -23,7 +23,7 @@ public class Geometries extends Intersectable{
 
     /**
      * constructor
-     * @param intersectables
+     * @param intersectables things that intersect
      */
     public Geometries(List<Intersectable> intersectables) {
         this.intersectables = new LinkedList<>();
@@ -31,7 +31,7 @@ public class Geometries extends Intersectable{
 
     /**
      * adds all the geometries to the intersectable collection
-     * @param geometries
+     * @param geometries geometric shapes
      */
     public void add(Intersectable... geometries) {
 
@@ -41,9 +41,9 @@ public class Geometries extends Intersectable{
 
     /**
      *find intersections between the ray and geometries
-     * @param ray
-     * @param maxDistance
-     * @return
+     * @param ray a ray
+     * @param maxDistance the distances max
+     * @return a list of geo points
      */
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {

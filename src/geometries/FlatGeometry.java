@@ -7,6 +7,9 @@ import primitives.Vector;
  * @author Mikhal Levi and Eliana Grajower
  */
 public abstract class FlatGeometry extends Geometry{
+    /**
+     * a normal vector
+     */
     protected Vector normal;
 
 }

@@ -16,6 +16,9 @@ public class Circle extends Geometry {
     final private Point center;
     final private double radius;
     final private Vector normal;
+    /**
+     * a plane
+     */
     protected Plane plane;
 
     /**

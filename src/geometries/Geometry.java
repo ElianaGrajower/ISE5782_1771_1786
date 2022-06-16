@@ -9,6 +9,9 @@ import java.util.List;
  * @author Mikhal Levy and Eliana Grajower
  */
 public abstract class Geometry extends Intersectable{
+    /**
+     * sets the emission to be black
+     */
     protected Color emission = Color.BLACK;
     private Material material = new Material();
     /**

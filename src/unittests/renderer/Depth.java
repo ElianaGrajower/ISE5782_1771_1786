@@ -13,14 +13,16 @@ import scene.Scene;
  * testing the depth
  */
 public class Depth {
-
-
-
-
+    /**
+     * tests the depth of the field
+     */
     public class DepthOfField {
 
         private Scene scene = new Scene.SceneBuilder("Test scene").build();
 
+        /**
+         * tests the depth
+         */
         @Test
         public void depth() {
             Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //

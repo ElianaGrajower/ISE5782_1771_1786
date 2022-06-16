@@ -135,6 +135,11 @@ public class Double3 {
 		return d1 < k && d2 < k && d3 < k;
 	}
 
+	/**
+	 * Checks whether all the numbers are bigger than a test number
+	 * @param k the test number
+	 * @return true or false
+	 */
 	public boolean biggerThan(double k)
 	{
 		return this.d1>k && this.d2>k && this.d3>k;

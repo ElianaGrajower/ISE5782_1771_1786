@@ -30,8 +30,8 @@ public class Cylinder extends Tube {
 
     /**
      *method to find a normal in a point
-     * @param point
-     * @return
+     * @param point points
+     * @return vector
      */
     @Override
     public Vector getNormal(Point point) {
@@ -44,9 +44,9 @@ public class Cylinder extends Tube {
 
     /**
      * find intersections and shape that intersect the ray
-     * @param ray
-     * @param maxDistance
-     * @return
+     * @param ray a ray
+     * @param maxDistance the distances max
+     * @return a list of geo points
      */
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
