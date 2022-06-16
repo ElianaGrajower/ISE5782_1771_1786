@@ -13,7 +13,12 @@ import scene.Scene;
 
 import static java.awt.Color.*;
 
-public class imagePart7 {
+/**
+ * our final picture
+ * @author Mikhal Levi & Eliana Grajower
+ */
+
+public class imageWithImprovments {
     private Scene scene = new Scene.SceneBuilder("House scene").build();
     @Test
     public void housePicture(){
@@ -95,7 +100,7 @@ public class imagePart7 {
 
                 //grass
                 new Triangle(M,Kg,L).setEmission(grass)
-                       .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
+                        .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
                 new Triangle(Kg,Jg,M).setEmission(grass)
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.3)),
 
@@ -191,7 +196,7 @@ public class imagePart7 {
                         .setMaterial(new Material().setKD(0.4).setkS(0.3).setnShininess(100).setKt(0.4).setKr(0.3))
 
 
-                );
+        );
         //birds/sun
         scene.lights.add(new SpotLight(new Color(yellow), new Point(-7.27,12.14,5.5),
                 new Vector(-0.12,-8.55,5.5)));
@@ -203,7 +208,7 @@ public class imagePart7 {
         //lamp light
         scene.lights.add(new PointLight(new Color(255,255,255),new Point(6.59,8.44,10)));
 
-        camera.setImageWriter(new ImageWriter("House image", 500, 500)) //
+        camera.setImageWriter(new ImageWriter("House image improved", 1000, 1000)) //
                 .setPixels(5,5)
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage() //
