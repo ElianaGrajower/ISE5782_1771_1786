@@ -9,6 +9,9 @@ import java.util.Objects;
 public class Point {
 
     final Double3 xyz;
+    /**
+     * static value-the zero point
+     */
     public final static Point ZERO=new Point(0d,0d,0d);
 
     /**

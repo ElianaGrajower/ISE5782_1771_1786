@@ -24,6 +24,7 @@ public class PointLight extends Light implements LightSource{
     /**
      * constructor
      * @param intensity color
+     * @param position point
      */
     public PointLight(Color intensity, Point position) {
         super(intensity);
@@ -59,31 +60,61 @@ public class PointLight extends Light implements LightSource{
         return position.distance(point);
     }
 
+    /**
+     * set the kc -intensity
+     * @param kC intensity
+     * @return PointLight
+     */
     public PointLight setkC(Double3 kC) {
         this.kC = kC;
         return this;
     }
 
+    /**
+     * set the kl
+     * @param kL Double3
+     * @return PointLight
+     */
     public PointLight setkL(Double3 kL) {
         this.kL = kL;
         return this;
     }
 
+    /**
+     * set the kq
+     * @param kQ Double3
+     * @return PointLight
+     */
     public PointLight setkQ(Double3 kQ) {
         this.kQ = kQ;
         return this;
     }
 
+    /**
+     * set kc
+     * @param kC double
+     * @return PointLight
+     */
     public PointLight setkC(double kC) {
         this.kC = new Double3(kC);
         return this;
     }
 
+    /**
+     * set the kl
+     * @param kL double
+     * @return PointLight
+     */
     public PointLight setkL(double kL) {
         this.kL = new Double3(kL);
         return this;
     }
 
+    /**
+     * set the kq
+     * @param kQ opacity
+     * @return the pointLight
+     */
     public PointLight setkQ(double kQ) {
         this.kQ = new Double3(kQ);
         return this;
@@ -91,10 +122,10 @@ public class PointLight extends Light implements LightSource{
 
     /**
      * return a beam of ray
-     * @param p
-     * @param radius
-     * @param amount
-     * @return
+     * @param p point
+     * @param radius radius
+     * @param amount int
+     * @return List<Vector>
      */
     @Override
     public List<Vector> getBeamL(Point p, double radius, int amount) {
